@@ -10,7 +10,7 @@ public interface IClientService {
     int addClient(Client client);
     int updateClient(Client client);
     Optional<Client> getClientById(String clientId);
-    int deleteClient(int id);
+    int deleteClient(UUID id);
     Client getClient(int id);
     List<Client> getClients();
 }

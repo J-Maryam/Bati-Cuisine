@@ -88,6 +88,16 @@ public class ClientDao implements IClientDao {
 
     @Override
     public int deleteClient(UUID id) {
+        String sql = "delete from clients where id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setObject(1, id);
+            int isDeleted = ps.executeUpdate();
+            if (isDeleted > 0) {
+                return isDeleted;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

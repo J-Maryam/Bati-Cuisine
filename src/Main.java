@@ -18,6 +18,6 @@ public class Main {
         IClientService clientService = new ClientService(clientDao);
 
         ClientMenu clientMenu = new ClientMenu(clientService);
-        clientMenu.updateClient();
+        clientMenu.deleteClient();
     }
 }

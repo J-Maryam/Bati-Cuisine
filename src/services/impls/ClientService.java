@@ -31,14 +31,13 @@ public class ClientService implements IClientService {
             UUID id = UUID.fromString(clientId);
             return clientDao.getClientById(id);
         }catch (IllegalArgumentException e) {
-            System.out.println("L'Id fourni n'est valide.");
             return Optional.empty();
         }
     }
 
     @Override
-    public int deleteClient(int id) {
-        return 0;
+    public int deleteClient(UUID id) {
+        return clientDao.deleteClient(id);
     }
 
     @Override

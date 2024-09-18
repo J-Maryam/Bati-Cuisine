@@ -5,6 +5,7 @@ import services.interfaces.IClientService;
 
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ClientMenu {
     private IClientService clientService;
@@ -37,6 +38,7 @@ public class ClientMenu {
                     updateClient();
                     break;
                 case 3:
+                    deleteClient();
                     break;
                 case 4:
                     break;
@@ -111,6 +113,19 @@ public class ClientMenu {
             }else
                 System.out.println("Failed to update client.");
         }
+    }
+
+    public void deleteClient() {
+        System.out.println("== Supprimer un client ==");
+
+        System.out.print("ID du client à supprimer: ");
+        String clientId = scanner.nextLine();
+
+        Optional<Client> existingClientOpt = clientService.getClientById(clientId);
+        if (existingClientOpt.isPresent()) {
+                clientService.deleteClient(UUID.fromString(clientId));
+                System.out.println("Client supprimé avec succès.");
+        }else System.out.println("Client non trouvé.");
     }
 
 }
