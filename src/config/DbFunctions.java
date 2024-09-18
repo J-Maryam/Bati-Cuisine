@@ -2,26 +2,33 @@ package config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
 public class DbFunctions {
 
     private static DbFunctions instance;
-    private static Connection con;
+    private Connection con;
+
 
     private DbFunctions() {}
 
-    public static DbFunctions getInstance() {
+    public static synchronized DbFunctions getInstance() {
         if (instance == null) {
             instance = new DbFunctions();
         }
         return instance;
     }
 
-    public Connection connectToDb( String dbName, String user, String pass) {
+    public Connection connectToDb() {
+        if (con != null) {
+            return con;
+        }
         try {
+            String url = "jdbc:postgresql://localhost:5432/BatiCuisine";
+            String user = "postgres";
+            String pass = "@aahmhmm28";
+
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pass);
+            con = DriverManager.getConnection(url, user, pass);
 
             if (con != null) {
                 System.out.println("Connected to PostgreSQL database");

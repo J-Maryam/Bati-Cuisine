@@ -1,6 +1,5 @@
 package dao.impls;
 
-import config.DbFunctions;
 import dao.interfaces.IClientDao;
 import models.entities.Client;
 
@@ -21,14 +20,13 @@ public class ClientDao implements IClientDao {
 
     @Override
     public int addClient(Client client) {
-        String sql = "insert into clients(id, nom, adresse, telephone, estProfessionnel) values (?, ?, ?, ?, ?)";
+        String sql = "insert into clients(nom, adresse, telephone, estProfessionnel) values (?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, UUID.randomUUID().toString());
-            ps.setString(2, client.getNom());
-            ps.setString(3, client.getAdresse());
-            ps.setString(4, client.getTelephone());
-            ps.setBoolean(5, client.isProfessional());
+            ps.setString(1, client.getNom());
+            ps.setString(2, client.getAdresse());
+            ps.setString(3, client.getTelephone());
+            ps.setBoolean(4, client.isProfessional());
 
             int isAdded = ps.executeUpdate();
             if (isAdded > 0) {

@@ -4,6 +4,7 @@ import dao.interfaces.IClientDao;
 
 import services.impls.ClientService;
 import services.interfaces.IClientService;
+import ui.ClientMenu;
 
 import java.sql.Connection;
 
@@ -11,10 +12,12 @@ public class Main {
     public static void main(String[] args) {
 
         DbFunctions db =DbFunctions.getInstance();
-        Connection connection = db.getConnection();
+        Connection connection = db.connectToDb();
 
         IClientDao clientDao = new ClientDao(connection);
         IClientService clientService = new ClientService(clientDao);
-//        clientService.addClient(client);
+
+        ClientMenu clientMenu = new ClientMenu(clientService);
+        clientMenu.addClient();
     }
 }
