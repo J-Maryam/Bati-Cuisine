@@ -5,6 +5,8 @@ import models.entities.Client;
 import services.interfaces.IClientService;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class ClientService implements IClientService {
     private IClientDao clientDao;
@@ -20,7 +22,18 @@ public class ClientService implements IClientService {
 
     @Override
     public int updateClient(Client client) {
-        return 0;
+        return clientDao.updateClient(client);
+    }
+
+    @Override
+    public Optional<Client> getClientById(String clientId) {
+        try {
+            UUID id = UUID.fromString(clientId);
+            return clientDao.getClientById(id);
+        }catch (IllegalArgumentException e) {
+            System.out.println("L'Id fourni n'est valide.");
+            return Optional.empty();
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package ui;
 import models.entities.Client;
 import services.interfaces.IClientService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ClientMenu {
@@ -33,6 +34,7 @@ public class ClientMenu {
                     addClient();
                     break;
                 case 2:
+                    updateClient();
                     break;
                 case 3:
                     break;
@@ -77,6 +79,37 @@ public class ClientMenu {
             System.out.println("Client added successfully.");
         }else {
             System.out.println("Client could not be added.");
+        }
+    }
+
+    public void updateClient() {
+        System.out.println("== Mettre à jour un client ==");
+
+        System.out.print("Entrez l'ID du client à mettre à jour: ");
+        String clientId = scanner.nextLine();
+
+        Optional<Client> existingClientOpt = clientService.getClientById(clientId);
+        if (existingClientOpt.isPresent()) {
+            Client existingClient = existingClientOpt.get();
+            System.out.println("Client trouvé: " + existingClient.getNom());
+
+            System.out.print("Nouveau nom: ");
+            String newName = scanner.nextLine();
+            existingClient.setNom(newName);
+
+            System.out.print("Nouvelle adresse: ");
+            String newAddress = scanner.nextLine();
+            existingClient.setAdresse(newAddress);
+
+            System.out.print("Nouveau téléphone: ");
+            String newPhone = scanner.nextLine();
+            existingClient.setTelephone(newPhone);
+
+            int isUpdated = clientService.updateClient(existingClient);
+            if (isUpdated > 0) {
+                System.out.println("Client updated successfully.");
+            }else
+                System.out.println("Failed to update client.");
         }
     }
 
