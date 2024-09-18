@@ -46,7 +46,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public List<Client> getClients() {
-        return List.of();
+    public List<Client> getAllClients() {
+        return clientDao.getAllClients();
     }
 }

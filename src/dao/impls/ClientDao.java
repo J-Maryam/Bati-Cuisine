@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -107,7 +108,24 @@ public class ClientDao implements IClientDao {
     }
 
     @Override
-    public List<Client> getClients() {
-        return List.of();
+    public List<Client> getAllClients() {
+        List<Client> clients = new ArrayList<>();
+        String sql = "select * from clients";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Client client = new Client();
+                client.setId((UUID) rs.getObject("id"));
+                client.setNom(rs.getString("nom"));
+                client.setAdresse(rs.getString("adresse"));
+                client.setTelephone(rs.getString("telephone"));
+                client.setProfessional(rs.getBoolean("estProfessionnel"));
+                clients.add(client);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return clients;
     }
 }

@@ -12,5 +12,5 @@ public interface IClientService {
     Optional<Client> getClientById(String clientId);
     int deleteClient(UUID id);
     Client getClient(int id);
-    List<Client> getClients();
+    List<Client> getAllClients();
 }

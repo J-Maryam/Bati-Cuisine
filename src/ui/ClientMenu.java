@@ -3,6 +3,7 @@ package ui;
 import models.entities.Client;
 import services.interfaces.IClientService;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
@@ -41,6 +42,7 @@ public class ClientMenu {
                     deleteClient();
                     break;
                 case 4:
+                    getAllClient();
                     break;
                 case 0:
                     System.out.println("Exiting client menu...");
@@ -126,6 +128,24 @@ public class ClientMenu {
                 clientService.deleteClient(UUID.fromString(clientId));
                 System.out.println("Client supprimé avec succès.");
         }else System.out.println("Client non trouvé.");
+    }
+
+    public void getAllClient(){
+        System.out.println("== Liste des clients ==");
+        List<Client> clients = clientService.getAllClients();
+
+        if (clients.isEmpty()){
+            System.out.println("No client found.");
+        }else {
+            for (Client client : clients) {
+                System.out.println("ID: " + client.getId());
+                System.out.println("Nom: " + client.getNom());
+                System.out.println("Adresse: " + client.getAdresse());
+                System.out.println("Téléphone: " + client.getTelephone());
+                System.out.println("Professionnel: " + client.isProfessional());
+                System.out.println("------------------------------");
+            }
+        }
     }
 
 }
