@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class DbFunctions {
 
     private static DbFunctions instance;
-    private Connection con;
+    private static Connection con;
 
     private DbFunctions() {}
 
@@ -46,5 +46,9 @@ public class DbFunctions {
                 throw new RuntimeException("Failed to close the database connection", e);
             }
         }
+    }
+
+    public Connection getConnection() {
+        return con;
     }
 }
