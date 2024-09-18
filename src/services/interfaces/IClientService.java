@@ -11,6 +11,6 @@ public interface IClientService {
     int updateClient(Client client);
     Optional<Client> getClientById(String clientId);
     int deleteClient(UUID id);
-    Client getClient(int id);
+    Optional<Client> getClientByName(String nom);
     List<Client> getAllClients();
 }

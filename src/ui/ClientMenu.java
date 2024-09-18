@@ -24,8 +24,9 @@ public class ClientMenu {
             System.out.println("==== Client Menu ====");
             System.out.println("1. Add new Client");
             System.out.println("2. Update Client");
-            System.out.println("3. Search Client");
-            System.out.println("4. Show all Clients");
+            System.out.println("3. Delete Client");
+            System.out.println("4. Search Client");
+            System.out.println("5. Show all Clients");
             System.out.println("0. Back to the main menu");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
@@ -42,6 +43,9 @@ public class ClientMenu {
                     deleteClient();
                     break;
                 case 4:
+                    searchClientByName();
+                    break;
+                case 5:
                     getAllClient();
                     break;
                 case 0:
@@ -128,6 +132,22 @@ public class ClientMenu {
                 clientService.deleteClient(UUID.fromString(clientId));
                 System.out.println("Client supprimé avec succès.");
         }else System.out.println("Client non trouvé.");
+    }
+
+    public void searchClientByName(){
+
+        System.out.print("Entrez le nom du client à rechercher : ");
+        String nom = scanner.nextLine();
+
+        Optional<Client> existingClientOpt = clientService.getClientByName(nom);
+        if (existingClientOpt.isPresent()) {
+            System.out.println("Client trouvé : ");
+            System.out.println("Id : " + existingClientOpt.get().getId());
+            System.out.println("Nom : " + existingClientOpt.get().getNom());
+            System.out.println("Adresse : " + existingClientOpt.get().getAdresse());
+            System.out.println("Telephone : " + existingClientOpt.get().getTelephone());
+            System.out.println("is Professionnel : " + existingClientOpt.get().isProfessional());
+        }else System.out.println("Aucun client trouvé avec le nom " + nom);
     }
 
     public void getAllClient(){

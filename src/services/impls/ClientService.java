@@ -41,8 +41,8 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public Client getClient(int id) {
-        return null;
+    public Optional<Client> getClientByName(String nom) {
+        return clientDao.getClientByName(nom);
     }
 
     @Override

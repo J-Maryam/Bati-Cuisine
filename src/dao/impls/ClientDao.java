@@ -103,8 +103,26 @@ public class ClientDao implements IClientDao {
     }
 
     @Override
-    public Client getClientByName(String nom) {
-        return null;
+    public Optional<Client> getClientByName(String nom) {
+        String sql = "select * from clients where nom = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, nom);
+            try (ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    Client client = new Client();
+                    client.setId((UUID) rs.getObject("id"));
+                    client.setNom(rs.getString("nom"));
+                    client.setAdresse(rs.getString("adresse"));
+                    client.setTelephone(rs.getString("telephone"));
+                    client.setProfessional(rs.getBoolean("estProfessionnel"));
+                    return Optional.of(client);
+                }
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 
     @Override

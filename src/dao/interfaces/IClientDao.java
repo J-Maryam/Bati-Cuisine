@@ -11,6 +11,6 @@ public interface IClientDao {
     int updateClient(Client client);
     Optional<Client> getClientById(UUID clientId);
     int deleteClient(UUID id);
-    Client getClientByName(String nom);
+    Optional<Client> getClientByName(String nom);
     List<Client> getAllClients();
 }
