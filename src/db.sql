@@ -40,7 +40,7 @@ CREATE TABLE materiaux
     coefficientQualite FLOAT,
     composantId        UUID,
     FOREIGN KEY (composantId) REFERENCES composants (id)
-);
+)INHERITS (composants);
 
 CREATE TABLE mainDOeuvres
 (
@@ -50,7 +50,7 @@ CREATE TABLE mainDOeuvres
     productiviteOuvrier FLOAT,
     composantId         UUID,
     FOREIGN KEY (composantId) REFERENCES composants (id)
-);
+)INHERITS (composants);
 
 CREATE TABLE devis
 (
