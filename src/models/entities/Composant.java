@@ -4,7 +4,7 @@ import models.enums.TypeComposant;
 
 import java.util.UUID;
 
-public class Composant {
+public abstract class Composant {
     protected UUID id;
     protected String nom;
     protected float tauxTVA;
@@ -20,4 +20,5 @@ public class Composant {
         this.projet = projet;
     }
 
+    public abstract double calculerCout();
 }
