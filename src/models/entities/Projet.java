@@ -2,25 +2,30 @@ package models.entities;
 
 import models.enums.EtatProjet;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Projet {
     private UUID id;
     private String nom;
     private float surface;
+    private float margeBeneficiaire;
     private float coutTotal;
     private EtatProjet etatProjet;
     private Client client;
+    private List<Composant> composants;
 
     public Projet() {}
 
-    public Projet(UUID id, String nom, float surface, float coutTotal, EtatProjet etatProjet, Client client) {
+    public Projet(UUID id, String nom, float surface, float margeBeneficiaire, float coutTotal, EtatProjet etatProjet, Client client, List<Composant> composants) {
         this.id = id;
         this.nom = nom;
         this.surface = surface;
+        this.margeBeneficiaire = margeBeneficiaire;
         this.coutTotal = coutTotal;
         this.etatProjet = etatProjet;
         this.client = client;
+        this.composants = composants;
     }
 
     public UUID getId() {
@@ -47,6 +52,14 @@ public class Projet {
         this.surface = surface;
     }
 
+    public float getMargeBeneficiaire() {
+        return margeBeneficiaire;
+    }
+
+    public void setMargeBeneficiaire(float margeBeneficiaire) {
+        this.margeBeneficiaire = margeBeneficiaire;
+    }
+
     public float getCoutTotal() {
         return coutTotal;
     }
@@ -65,5 +78,13 @@ public class Projet {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public List<Composant> getComposants() {
+        return composants;
+    }
+
+    public void setComposants(List<Composant> composants) {
+        this.composants = composants;
     }
 }
