@@ -141,7 +141,7 @@ public class ClientMenu {
 
         Optional<Client> existingClientOpt = clientService.getClientByName(nom);
         if (existingClientOpt.isPresent()) {
-            System.out.println("Client trouvé : ");
+            System.out.println("\n=== Client trouvé : ===");
             System.out.println("Id : " + existingClientOpt.get().getId());
             System.out.println("Nom : " + existingClientOpt.get().getNom());
             System.out.println("Adresse : " + existingClientOpt.get().getAdresse());
