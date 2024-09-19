@@ -37,18 +37,14 @@ CREATE TABLE materiaux
     coutUnitaire       DECIMAL(15, 2),
     quantite           FLOAT,
     coutTransport      DECIMAL(10, 2),
-    coefficientQualite FLOAT,
-    composantId        UUID,
-    FOREIGN KEY (composantId) REFERENCES composants (id)
+    coefficientQualite FLOAT
 )INHERITS (composants);
 
 CREATE TABLE mainDOeuvres
 (
     tauxHoraire         DECIMAL(10, 2),
     heuresTravail       FLOAT,
-    productiviteOuvrier FLOAT,
-    composantId         UUID,
-    FOREIGN KEY (composantId) REFERENCES composants (id)
+    productiviteOuvrier FLOAT
 )INHERITS (composants);
 
 CREATE TABLE devis
