@@ -12,12 +12,13 @@ CREATE TABLE clients
 
 CREATE TABLE projets
 (
-    id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    nom        VARCHAR(255) NOT NULL,
-    surface    FLOAT,
-    coutTotal  DECIMAL(15,2),
-    etatProjet EtatProjet,
-    clientId   UUID,
+    id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    nom               VARCHAR(255) NOT NULL,
+    surface           FLOAT,
+    margeBeneficiaire FLOAT,
+    coutTotal         DECIMAL(15, 2),
+    etatProjet        EtatProjet,
+    clientId          UUID,
     FOREIGN KEY (clientId) REFERENCES clients (id)
 );
 
@@ -33,10 +34,9 @@ CREATE TABLE composants
 
 CREATE TABLE materiaux
 (
-    id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    coutUnitaire       DECIMAL(15,2),
+    coutUnitaire       DECIMAL(15, 2),
     quantite           FLOAT,
-    coutTransport      DECIMAL(10,2),
+    coutTransport      DECIMAL(10, 2),
     coefficientQualite FLOAT,
     composantId        UUID,
     FOREIGN KEY (composantId) REFERENCES composants (id)
@@ -44,8 +44,7 @@ CREATE TABLE materiaux
 
 CREATE TABLE mainDOeuvres
 (
-    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tauxHoraire         DECIMAL(10,2),
+    tauxHoraire         DECIMAL(10, 2),
     heuresTravail       FLOAT,
     productiviteOuvrier FLOAT,
     composantId         UUID,
@@ -55,7 +54,7 @@ CREATE TABLE mainDOeuvres
 CREATE TABLE devis
 (
     id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    montantEstime DECIMAL(10,2),
+    montantEstime DECIMAL(10, 2),
     dateEmission  DATE,
     dateValidite  DATE,
     TVA           FLOAT,
