@@ -11,7 +11,7 @@ public class DbFunctions {
 
     private DbFunctions() {}
 
-    public static synchronized DbFunctions getInstance() {
+    public static DbFunctions getInstance() {
         if (instance == null) {
             instance = new DbFunctions();
         }
@@ -53,9 +53,5 @@ public class DbFunctions {
                 throw new RuntimeException("Failed to close the database connection", e);
             }
         }
-    }
-
-    public Connection getConnection() {
-        return con;
     }
 }
