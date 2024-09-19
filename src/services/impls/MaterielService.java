@@ -1,34 +1,37 @@
 package services.impls;
 
 import models.entities.Composant;
+import models.entities.Materiel;
 import services.interfaces.IComposantService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public class ComposantService implements IComposantService {
+public class MaterielService implements IComposantService<Materiel> {
+
     @Override
-    public int addComposant(Composant composant) {
+    public int addComposant(Materiel composant) {
         return 0;
     }
 
     @Override
-    public int updateComposant(Composant composant) {
+    public int updateComposant(Materiel composant) {
         return 0;
     }
 
     @Override
-    public int deleteComposant(int id) {
+    public int deleteComposant(UUID id) {
         return 0;
     }
 
     @Override
-    public Optional<Composant> getComposantById(int id) {
+    public Optional<Materiel> getComposantById(UUID id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Composant> getComposants() {
+    public List<Materiel> getComposants() {
         return List.of();
     }
 }
