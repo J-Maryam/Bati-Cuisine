@@ -72,6 +72,10 @@ public class Projet {
         return etatProjet;
     }
 
+    public void setEtatProjet(EtatProjet etatProjet) {
+        this.etatProjet = etatProjet;
+    }
+
     public Client getClient() {
         return client;
     }

@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ui/ProjetMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/09096892-658b-4195-aea8-0815176f68a0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/09096892-658b-4195-aea8-0815176f68a0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impls/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impls/ClientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/interfaces/IClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/interfaces/IClientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/impls/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/impls/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/interfaces/IClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/interfaces/IClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/DbFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/DbFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impls/ProjetDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impls/ProjetDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/interfaces/IProjetDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/interfaces/IProjetDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/entities/Projet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/entities/Projet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/impls/ProjetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/impls/ProjetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/interfaces/IProjetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/interfaces/IProjetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ClientMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,9 +35,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2m6NUH0KVgnZJXEPnDZU5MRCdUd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,7 +53,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "BC-16-Gestion-des-Clients",
+    "git-widget-placeholder": "BC-14-Gestion-des-Projets",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/marya/Downloads/postgresql-42.7.4.jar",
     "node.js.detected.package.eslint": "true",
