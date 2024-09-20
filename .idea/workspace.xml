@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ui/MaterielMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impls/MaterielDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impls/MaterielDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impls/ProjetDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impls/ProjetDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/interfaces/IComposantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/interfaces/IComposantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/interfaces/IProjetDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/interfaces/IProjetDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/impls/MaterielService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/impls/MaterielService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/impls/ProjetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/impls/ProjetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/interfaces/IComposantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/interfaces/IComposantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/interfaces/IProjetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/interfaces/IProjetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ProjetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProjetMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
