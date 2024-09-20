@@ -53,7 +53,6 @@ CREATE TABLE devis
     montantEstime DECIMAL(10, 2),
     dateEmission  DATE,
     dateValidite  DATE,
-    TVA           FLOAT,
     accepte       BOOLEAN,
     projetId      UUID,
     FOREIGN KEY (projetId) REFERENCES projets (id)
