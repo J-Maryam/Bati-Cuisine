@@ -4,9 +4,7 @@ import dao.interfaces.IProjetDao;
 import models.entities.Projet;
 import models.enums.EtatProjet;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,26 +18,33 @@ public class ProjetDao implements IProjetDao {
     }
 
     @Override
-    public int addProjet(Projet projet) {
+    public UUID addProjet(Projet projet) {
         if (projet.getEtatProjet() == null) {
             projet.setEtatProjet(EtatProjet.ENCOURS);
         }
         String sql = "insert into projets (nom, surface, margeBeneficiaire, coutTotal, etatProjet, clientId) values(?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, projet.getNom());
             ps.setDouble(2, projet.getSurface());
             ps.setDouble(3, projet.getMargeBeneficiaire());
             ps.setDouble(4, projet.getCoutTotal());
             ps.setObject(5, projet.getEtatProjet().name(), java.sql.Types.OTHER);
             ps.setObject(6, projet.getClient().getId());
-            int rowAffected = ps.executeUpdate();
-            if (rowAffected > 0) {
-                return rowAffected;
+
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        projet.setId(generatedKeys.getObject(1, UUID.class));
+                        return projet.getId();
+                    }
+                }
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return projet.getId();
     }
 
     @Override

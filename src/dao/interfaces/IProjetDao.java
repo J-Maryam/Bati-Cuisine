@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface IProjetDao {
-    int addProjet(Projet projet);
+    UUID addProjet(Projet projet);
     int updateProjet(Projet projet);
     int deleteProjet(UUID id);
     Optional<Projet> getProjetById(UUID id);

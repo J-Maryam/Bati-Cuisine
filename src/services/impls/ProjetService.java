@@ -15,7 +15,7 @@ public class ProjetService implements IProjetService {
     }
 
     @Override
-    public int addProjet(Projet projet) {
+    public UUID addProjet(Projet projet) {
         return projetDao.addProjet(projet);
     }
 
