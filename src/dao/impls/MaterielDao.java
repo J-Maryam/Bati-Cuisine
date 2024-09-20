@@ -19,7 +19,23 @@ public class MaterielDao implements IComposantDao<Materiel> {
     }
 
     @Override
-    public int addComposant(Materiel Materiel) {
+    public int addComposant(Materiel materiel, UUID projetId) {
+        String sql = "INSERT INTO materiaux (nom, tauxTVA, typeComposant, projetId, coutUnitaire, quantite, coutTransport, coefficientQualite) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, materiel.getNom());
+            ps.setFloat(2, materiel.getTauxTVA());
+            ps.setObject(3, materiel.getTypeComposant(), java.sql.Types.OTHER);
+            ps.setObject(4, projetId);
+            ps.setFloat(5, materiel.getCoutUnitaire());
+            ps.setFloat(6, materiel.getQuantite());
+            ps.setFloat(7, materiel.getCoutTransport());
+            ps.setFloat(8, materiel.getCoefficientQualite());
+
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

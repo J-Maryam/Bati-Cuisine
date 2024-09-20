@@ -12,17 +12,20 @@ import services.interfaces.IProjetService;
 
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ProjetMenu {
     private Scanner scanner = new Scanner(System.in);
     private IProjetService projetService;
     private IClientService clientService;
     private ClientMenu clientMenu;
+    private MaterielMenu materielMenu;
 
-    public ProjetMenu(IProjetService projetService, IClientService clientService, ClientMenu clientMenu) {
+    public ProjetMenu(IProjetService projetService, IClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
+        this.materielMenu = materielMenu;
     }
 
     public void displayMenu() {
@@ -90,8 +93,8 @@ public class ProjetMenu {
                     System.out.println("Id : " + client.getId());
                     System.out.println("Nom : " + client.getNom());
                     System.out.println("Adresse : " + client.getAdresse());
-                    System.out.println("Telephone : " + client.getTelephone());
-                    System.out.println("is Professionnel : " + client.isProfessional());
+                    System.out.println("Téléphone : " + client.getTelephone());
+                    System.out.println("Est professionnel : " + client.isProfessional());
                 } else {
                     System.out.println("Client " + nomClient + " n'existe pas. Veuillez ajouter un nouveau client.");
                     client = addNewClient();
@@ -103,20 +106,20 @@ public class ProjetMenu {
             }
         } while (!option.equals("1") && !option.equals("2"));
 
-        System.out.print("\n Nom du projet : ");
+        System.out.print("\nNom du projet : ");
         String nom = scanner.nextLine();
 
         System.out.print("Surface du projet : ");
         Float surface = scanner.nextFloat();
         scanner.nextLine();
 
-        System.out.print("Est ce que vous voulez ajouter une marge beneficiaire à ce projet? (y/n): ");
+        System.out.print("Voulez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();
         if (reponse.equals("y")) {
-            System.out.print("Entrer la marge beneficiaire de ce projet : ");
+            System.out.print("Entrer la marge bénéficiaire de ce projet : ");
             marge = scanner.nextFloat();
             scanner.nextLine();
-        }else {
+        } else {
             marge = null;
         }
 
@@ -126,9 +129,15 @@ public class ProjetMenu {
         projet.setMargeBeneficiaire(marge);
         projet.setClient(client);
 
-        projetService.addProjet(projet);
-        System.out.println("Projet ajouté avec succès.");
+        UUID projetId = projetService.addProjet(projet);
 
+        materielMenu.addMateriel(projetId, projet);
+
+        if (projetId != null) {
+            System.out.println("Projet ajouté avec succès.");
+        } else {
+            System.out.println("Une erreur est survenue lors de l'ajout du projet.");
+        }
     }
 
     public Client addNewClient() {

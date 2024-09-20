@@ -1,5 +1,6 @@
 package services.impls;
 
+import dao.interfaces.IComposantDao;
 import models.entities.Composant;
 import models.entities.Materiel;
 import services.interfaces.IComposantService;
@@ -10,9 +11,14 @@ import java.util.UUID;
 
 public class MaterielService implements IComposantService<Materiel> {
 
+    private IComposantDao materielDao;
+    public MaterielService(IComposantDao materielDao) {
+        this.materielDao = materielDao;
+    }
+
     @Override
-    public int addComposant(Materiel composant) {
-        return 0;
+    public int addComposant(Materiel materiel, UUID projetId) {
+        return materielDao.addComposant(materiel, projetId);
     }
 
     @Override
