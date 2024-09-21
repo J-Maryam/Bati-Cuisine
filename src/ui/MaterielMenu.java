@@ -42,10 +42,6 @@ public class MaterielMenu {
         float coutTransport = scanner.nextFloat();
         scanner.nextLine();
 
-//        System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
-//        float coefficientQualite = Float.parseFloat(scanner.nextLine());
-
-
         while (!isValid) {
             System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
             try {

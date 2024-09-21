@@ -139,8 +139,9 @@ public class ProjetMenu {
     }
 
     public Client addNewClient() {
+        UUID clientId = clientMenu.addClient();
         Client client = new Client();
-        clientMenu.addClient();
+        client.setId(clientId);
         return client;
     }
 

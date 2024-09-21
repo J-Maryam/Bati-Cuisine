@@ -16,7 +16,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public int addClient(Client client) {
+    public UUID addClient(Client client) {
         return clientRepository.addClient(client);
     }
 

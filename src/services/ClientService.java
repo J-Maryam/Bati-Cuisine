@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ClientService {
-    int addClient(Client client);
+    UUID addClient(Client client);
     int updateClient(Client client);
     Optional<Client> getClientById(String clientId);
     int deleteClient(UUID id);

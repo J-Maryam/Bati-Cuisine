@@ -3,10 +3,7 @@ package repository.impls;
 import repository.ClientRepository;
 import models.entities.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,10 +19,10 @@ public class ClientRepositoryImpl implements ClientRepository {
 
 
     @Override
-    public int addClient(Client client) {
+    public UUID addClient(Client client) {
         String sql = "insert into clients(nom, adresse, telephone, estProfessionnel) values (?, ?, ?, ?)";
 
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, client.getNom());
             ps.setString(2, client.getAdresse());
             ps.setString(3, client.getTelephone());
@@ -33,13 +30,19 @@ public class ClientRepositoryImpl implements ClientRepository {
 
             int isAdded = ps.executeUpdate();
             if (isAdded > 0) {
-                return isAdded;
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        UUID clientId = generatedKeys.getObject(1, UUID.class);
+                        client.setId(clientId);
+                        return clientId;
+                    }
+                }
             }
-
+            return client.getId();
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return null;
     }
 
     @Override

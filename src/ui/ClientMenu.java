@@ -58,7 +58,7 @@ public class ClientMenu {
         }
     }
 
-    public void addClient() {
+    public UUID addClient() {
 
         System.out.println("== Ajouter un nouveau client ==");
 
@@ -81,13 +81,15 @@ public class ClientMenu {
         client.setTelephone(telephone);
         client.setProfessional(estProfessionnel);
 
-        int isAdded = clientService.addClient(client);
+        UUID clientId = clientService.addClient(client);
 
-        if (isAdded > 0) {
+        if (clientId != null) {
+            client.setId(clientId);
             System.out.println("Client added successfully.");
         }else {
             System.out.println("Client could not be added.");
         }
+        return clientId;
     }
 
     public void updateClient() {
