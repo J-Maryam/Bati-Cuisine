@@ -37,7 +37,7 @@ CREATE TABLE materiaux
     coutUnitaire       DECIMAL(15, 2),
     quantite           FLOAT,
     coutTransport      DECIMAL(10, 2),
-    coefficientQualite FLOAT
+    coefficientQualite FLOAT(1, 1)
 )INHERITS (composants);
 
 CREATE TABLE mainDOeuvres

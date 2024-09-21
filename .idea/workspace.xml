@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/dao/impls/MaterielDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impls/MaterielDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MaterielMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MaterielMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ProjetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProjetMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

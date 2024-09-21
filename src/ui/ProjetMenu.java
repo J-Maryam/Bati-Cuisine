@@ -113,6 +113,17 @@ public class ProjetMenu {
         Float surface = scanner.nextFloat();
         scanner.nextLine();
 
+
+
+        Projet projet = new Projet();
+        projet.setNom(nom);
+        projet.setSurface(surface);
+        projet.setClient(client);
+
+        UUID projetId = projetService.addProjet(projet);
+
+        materielMenu.addMateriel(projetId, projet);
+
         System.out.print("Voulez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();
         if (reponse.equals("y")) {
@@ -122,17 +133,8 @@ public class ProjetMenu {
         } else {
             marge = null;
         }
-
-        Projet projet = new Projet();
-        projet.setNom(nom);
-        projet.setSurface(surface);
         projet.setMargeBeneficiaire(marge);
-        projet.setClient(client);
-
-        UUID projetId = projetService.addProjet(projet);
-
-        materielMenu.addMateriel(projetId, projet);
-
+        projetService.addProjet(projet);
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
         } else {

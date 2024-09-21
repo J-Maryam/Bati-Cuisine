@@ -13,6 +13,8 @@ public class MaterielMenu {
     private Scanner scanner = new Scanner(System.in);
     private IComposantService materielService;
     private IProjetService projetService;
+    float coefficientQualite = 0.0f;
+    boolean isValid = false;
 
     public MaterielMenu(IComposantService materielService, IProjetService projetService) {
         this.materielService = materielService;
@@ -41,9 +43,23 @@ public class MaterielMenu {
         float coutTransport = scanner.nextFloat();
         scanner.nextLine();
 
-        System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
-        float coefficientQualite = scanner.nextFloat();
-        scanner.nextLine();
+//        System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
+//        float coefficientQualite = Float.parseFloat(scanner.nextLine());
+
+
+        while (!isValid) {
+            System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
+            try {
+                coefficientQualite = Float.parseFloat(scanner.nextLine());
+                if (coefficientQualite == 1.0f || coefficientQualite == 1.1f || coefficientQualite == 2.0f) {
+                    isValid = true;
+                } else {
+                    System.out.println("Valeur incorrecte. Veuillez entrer 1.0, 1.1 ou 2.0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrée invalide. Veuillez entrer un nombre valide.");
+            }
+        }
 
         Materiel materiel = new Materiel();
         materiel.setNom(nom);
