@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dao/impls/MainDOeuvreDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/impls/MainDOeuvreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/MainDOeuvreMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MaterielMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MaterielMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ProjetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProjetMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +48,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "BC-15-Gestion-des-Materiaux",
+    "git-widget-placeholder": "BC-25-Gestion-de-Main-d-oeuvre",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/marya/Downloads/postgresql-42.7.4.jar",
     "node.js.detected.package.eslint": "true",
@@ -70,6 +73,9 @@
       <recent name="C:\Users\marya\IdeaProjects\Bati-Cuisine\UML" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ui" />
+      <recent name="services.impls" />
+      <recent name="dao.impls" />
       <recent name="models.enums" />
     </key>
   </component>

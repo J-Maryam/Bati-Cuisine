@@ -20,12 +20,14 @@ public class ProjetMenu {
     private IClientService clientService;
     private ClientMenu clientMenu;
     private MaterielMenu materielMenu;
+    private MainDOeuvreMenu mainDOeuvreMenu;
 
-    public ProjetMenu(IProjetService projetService, IClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu) {
+    public ProjetMenu(IProjetService projetService, IClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
         this.materielMenu = materielMenu;
+        this.mainDOeuvreMenu = mainDOeuvreMenu;
     }
 
     public void displayMenu() {
@@ -113,8 +115,6 @@ public class ProjetMenu {
         Float surface = scanner.nextFloat();
         scanner.nextLine();
 
-
-
         Projet projet = new Projet();
         projet.setNom(nom);
         projet.setSurface(surface);
@@ -123,6 +123,8 @@ public class ProjetMenu {
         UUID projetId = projetService.addProjet(projet);
 
         materielMenu.addMateriel(projetId, projet);
+
+        mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
 
         System.out.print("Voulez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();

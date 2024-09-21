@@ -37,14 +37,14 @@ CREATE TABLE materiaux
     coutUnitaire       DECIMAL(15, 2),
     quantite           FLOAT,
     coutTransport      DECIMAL(10, 2),
-    coefficientQualite FLOAT(1, 1)
+    coefficientQualite DECIMAL(3, 1)
 )INHERITS (composants);
 
 CREATE TABLE mainDOeuvres
 (
     tauxHoraire         DECIMAL(10, 2),
     heuresTravail       FLOAT,
-    productiviteOuvrier FLOAT
+    productiviteOuvrier DECIMAL(3, 1)
 )INHERITS (composants);
 
 CREATE TABLE devis
