@@ -1,6 +1,6 @@
-package dao.impls;
+package repository.impls;
 
-import dao.interfaces.IProjetDao;
+import repository.ProjetRepository;
 import models.entities.Projet;
 import models.enums.EtatProjet;
 
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ProjetDao implements IProjetDao {
+public class ProjetRepositoryImpl implements ProjetRepository {
 
     private final Connection connection;
 
-    public ProjetDao(Connection connection) {
+    public ProjetRepositoryImpl(Connection connection) {
         this.connection = connection;
     }
 

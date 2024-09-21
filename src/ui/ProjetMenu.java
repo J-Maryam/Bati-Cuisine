@@ -1,14 +1,9 @@
 package ui;
 
-import dao.impls.ClientDao;
-import dao.interfaces.IProjetDao;
 import models.entities.Client;
 import models.entities.Projet;
-import models.enums.EtatProjet;
-import services.impls.ClientService;
-import services.impls.ProjetService;
-import services.interfaces.IClientService;
-import services.interfaces.IProjetService;
+import services.ClientService;
+import services.ProjetService;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -16,13 +11,13 @@ import java.util.UUID;
 
 public class ProjetMenu {
     private Scanner scanner = new Scanner(System.in);
-    private IProjetService projetService;
-    private IClientService clientService;
+    private ProjetService projetService;
+    private ClientService clientService;
     private ClientMenu clientMenu;
     private MaterielMenu materielMenu;
     private MainDOeuvreMenu mainDOeuvreMenu;
 
-    public ProjetMenu(IProjetService projetService, IClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu) {
+    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
@@ -137,6 +132,7 @@ public class ProjetMenu {
         }
         projet.setMargeBeneficiaire(marge);
         projetService.addProjet(projet);
+
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
         } else {

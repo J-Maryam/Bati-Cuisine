@@ -1,13 +1,10 @@
-package services.interfaces;
-
-import models.entities.Composant;
-import models.entities.Materiel;
+package services;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface IComposantService<T> {
+public interface ComposantService<T> {
     int addComposant(T composant, UUID projetId);
     int updateComposant(T composant);
     int deleteComposant(UUID id);

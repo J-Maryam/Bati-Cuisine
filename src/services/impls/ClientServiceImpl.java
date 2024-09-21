@@ -1,35 +1,35 @@
 package services.impls;
 
-import dao.interfaces.IClientDao;
+import repository.ClientRepository;
 import models.entities.Client;
-import services.interfaces.IClientService;
+import services.ClientService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ClientService implements IClientService {
-    private IClientDao clientDao;
+public class ClientServiceImpl implements ClientService {
+    private ClientRepository clientRepository;
 
-    public ClientService(IClientDao clientDao) {
-        this.clientDao = clientDao;
+    public ClientServiceImpl(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
     }
 
     @Override
     public int addClient(Client client) {
-        return clientDao.addClient(client);
+        return clientRepository.addClient(client);
     }
 
     @Override
     public int updateClient(Client client) {
-        return clientDao.updateClient(client);
+        return clientRepository.updateClient(client);
     }
 
     @Override
     public Optional<Client> getClientById(String clientId) {
         try {
             UUID id = UUID.fromString(clientId);
-            return clientDao.getClientById(id);
+            return clientRepository.getClientById(id);
         }catch (IllegalArgumentException e) {
             return Optional.empty();
         }
@@ -37,16 +37,16 @@ public class ClientService implements IClientService {
 
     @Override
     public int deleteClient(UUID id) {
-        return clientDao.deleteClient(id);
+        return clientRepository.deleteClient(id);
     }
 
     @Override
     public Optional<Client> getClientByName(String nom) {
-        return clientDao.getClientByName(nom);
+        return clientRepository.getClientByName(nom);
     }
 
     @Override
     public List<Client> getAllClients() {
-        return clientDao.getAllClients();
+        return clientRepository.getAllClients();
     }
 }

@@ -2,20 +2,20 @@ package ui;
 
 import models.entities.MainDOeuvre;
 import models.entities.Projet;
-import services.interfaces.IComposantService;
-import services.interfaces.IProjetService;
+import services.ComposantService;
+import services.ProjetService;
 
 import java.util.Scanner;
 import java.util.UUID;
 
 public class MainDOeuvreMenu {
     private Scanner scanner = new Scanner(System.in);
-    private IComposantService mainDOeuvreService;
-    private IProjetService projetService;
+    private ComposantService mainDOeuvreService;
+    private ProjetService projetService;
     float productiviteOuvrier = 0.0f;
     boolean isValid = false;
 
-    public MainDOeuvreMenu(IComposantService mainDOeuvreService, IProjetService projetService) {
+    public MainDOeuvreMenu(ComposantService mainDOeuvreService, ProjetService projetService) {
         this.mainDOeuvreService = mainDOeuvreService;
         this.projetService = projetService;
     }

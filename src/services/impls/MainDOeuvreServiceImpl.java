@@ -1,23 +1,23 @@
 package services.impls;
 
-import dao.interfaces.IComposantDao;
+import repository.ComposantRepository;
 import models.entities.MainDOeuvre;
-import services.interfaces.IComposantService;
+import services.ComposantService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MainDOeuvreService implements IComposantService<MainDOeuvre> {
+public class MainDOeuvreServiceImpl implements ComposantService<MainDOeuvre> {
 
-    private IComposantDao mainDoeuvreDao;
-    public MainDOeuvreService(IComposantDao mainDoeuvreDao) {
-        this.mainDoeuvreDao = mainDoeuvreDao;
+    private ComposantRepository mainDOeuvreRepository;
+    public MainDOeuvreServiceImpl(ComposantRepository mainDoeuvreRepository) {
+        this.mainDOeuvreRepository = mainDoeuvreRepository;
     }
 
     @Override
     public int addComposant(MainDOeuvre mainDOeuvre, UUID projetId) {
-        return mainDoeuvreDao.addComposant(mainDOeuvre, projetId);
+        return mainDOeuvreRepository.addComposant(mainDOeuvre, projetId);
     }
 
     @Override

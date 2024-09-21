@@ -1,24 +1,23 @@
 package services.impls;
 
-import dao.interfaces.IComposantDao;
-import models.entities.Composant;
+import repository.ComposantRepository;
 import models.entities.Materiel;
-import services.interfaces.IComposantService;
+import services.ComposantService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MaterielService implements IComposantService<Materiel> {
+public class MaterielServiceImpl implements ComposantService<Materiel> {
 
-    private IComposantDao materielDao;
-    public MaterielService(IComposantDao materielDao) {
-        this.materielDao = materielDao;
+    private ComposantRepository materielRepository;
+    public MaterielServiceImpl(ComposantRepository materielRepository) {
+        this.materielRepository = materielRepository;
     }
 
     @Override
     public int addComposant(Materiel materiel, UUID projetId) {
-        return materielDao.addComposant(materiel, projetId);
+        return materielRepository.addComposant(materiel, projetId);
     }
 
     @Override

@@ -1,19 +1,19 @@
 import config.DbFunctions;
-import dao.impls.ClientDao;
-import dao.impls.MainDOeuvreDao;
-import dao.impls.MaterielDao;
-import dao.impls.ProjetDao;
-import dao.interfaces.IClientDao;
+import repository.impls.ClientRepositoryImpl;
+import repository.impls.MainDOeuvreRepositoryImpl;
+import repository.impls.MaterielRepositoryImpl;
+import repository.impls.ProjetRepositoryImpl;
+import repository.ClientRepository;
 
-import dao.interfaces.IComposantDao;
-import dao.interfaces.IProjetDao;
-import services.impls.ClientService;
-import services.impls.MainDOeuvreService;
-import services.impls.MaterielService;
-import services.impls.ProjetService;
-import services.interfaces.IClientService;
-import services.interfaces.IComposantService;
-import services.interfaces.IProjetService;
+import repository.ComposantRepository;
+import repository.ProjetRepository;
+import services.impls.ClientServiceImpl;
+import services.impls.MainDOeuvreServiceImpl;
+import services.impls.MaterielServiceImpl;
+import services.ClientService;
+import services.ComposantService;
+import services.ProjetService;
+import services.impls.ProjetServiceImpl;
 import ui.ClientMenu;
 import ui.MainDOeuvreMenu;
 import ui.MaterielMenu;
@@ -27,22 +27,22 @@ public class Main {
         DbFunctions db =DbFunctions.getInstance();
         Connection connection = db.connectToDb();
 
-        IClientDao clientDao = new ClientDao(connection);
-        IClientService clientService = new ClientService(clientDao);
+        ClientRepository clientRepository = new ClientRepositoryImpl(connection);
+        ClientService clientService = new ClientServiceImpl(clientRepository);
 
         ClientMenu clientMenu = new ClientMenu(clientService);
 //        clientMenu.searchClientByName();
 
-        IProjetDao projetDao = new ProjetDao(connection);
-        IProjetService projetService = new ProjetService(projetDao);
+        ProjetRepository projetRepository = new ProjetRepositoryImpl(connection);
+        ProjetService projetService = new ProjetServiceImpl(projetRepository);
 
-        IComposantDao materielDao = new MaterielDao(connection);
-        IComposantService materielService = new MaterielService(materielDao);
+        ComposantRepository materielRepository = new MaterielRepositoryImpl(connection);
+        ComposantService materielService = new MaterielServiceImpl(materielRepository);
         MaterielMenu materielMenu = new MaterielMenu(materielService, projetService);
 //        materielMenu.addMateriel();
 
-        IComposantDao mainDoeuvreDao = new MainDOeuvreDao(connection);
-        IComposantService mainDOeuvreService = new MainDOeuvreService(mainDoeuvreDao);
+        ComposantRepository mainDOeuvreRepository = new MainDOeuvreRepositoryImpl(connection);
+        ComposantService mainDOeuvreService = new MainDOeuvreServiceImpl(mainDOeuvreRepository);
         MainDOeuvreMenu mainDOeuvreMenu = new MainDOeuvreMenu(mainDOeuvreService, projetService);
 
         ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu);

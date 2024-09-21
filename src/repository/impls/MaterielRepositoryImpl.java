@@ -1,7 +1,6 @@
-package dao.impls;
+package repository.impls;
 
-import dao.interfaces.IComposantDao;
-import models.entities.Composant;
+import repository.ComposantRepository;
 import models.entities.Materiel;
 import models.enums.TypeComposant;
 
@@ -12,10 +11,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MaterielDao implements IComposantDao<Materiel> {
+public class MaterielRepositoryImpl implements ComposantRepository<Materiel> {
 
     private Connection connection;
-    public MaterielDao(Connection connection) {
+    public MaterielRepositoryImpl(Connection connection) {
         this.connection = connection;
     }
 

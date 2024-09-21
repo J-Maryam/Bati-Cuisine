@@ -1,12 +1,10 @@
-package dao.interfaces;
-
-import models.entities.Composant;
+package repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface IComposantDao<T> {
+public interface ComposantRepository<T> {
     int addComposant(T composant,UUID projetId);
     int updateComposant(T composant);
     int deleteComposant(UUID id);

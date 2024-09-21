@@ -1,6 +1,6 @@
-package dao.impls;
+package repository.impls;
 
-import dao.interfaces.IComposantDao;
+import repository.ComposantRepository;
 import models.entities.MainDOeuvre;
 import models.enums.TypeComposant;
 
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MainDOeuvreDao implements IComposantDao<MainDOeuvre> {
+public class MainDOeuvreRepositoryImpl implements ComposantRepository<MainDOeuvre> {
 
     private Connection connection;
-    public MainDOeuvreDao(Connection connection) {
+    public MainDOeuvreRepositoryImpl(Connection connection) {
         this.connection = connection;
     }
 
@@ -27,9 +27,9 @@ public class MainDOeuvreDao implements IComposantDao<MainDOeuvre> {
             ps.setFloat(2, mainDOeuvre.getTauxTVA());
             ps.setObject(3, mainDOeuvre.getTypeComposant().name(), java.sql.Types.OTHER);
             ps.setObject(4, projetId);
-            ps.setFloat(5, mainDOeuvre.getHeuresTravail());
-            ps.setFloat(6, mainDOeuvre.getProductiviteOuvrier());
-            ps.setFloat(7, mainDOeuvre.getTauxHoraire());
+            ps.setFloat(5, mainDOeuvre.getTauxHoraire());
+            ps.setFloat(6, mainDOeuvre.getHeuresTravail());
+            ps.setFloat(7, mainDOeuvre.getProductiviteOuvrier());
 
             return ps.executeUpdate();
 

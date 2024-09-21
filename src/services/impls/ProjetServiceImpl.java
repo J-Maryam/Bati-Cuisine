@@ -1,22 +1,22 @@
 package services.impls;
 
-import dao.interfaces.IProjetDao;
+import repository.ProjetRepository;
 import models.entities.Projet;
-import services.interfaces.IProjetService;
+import services.ProjetService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ProjetService implements IProjetService {
-    private IProjetDao projetDao;
-    public ProjetService(IProjetDao projetDao) {
-        this.projetDao = projetDao;
+public class ProjetServiceImpl implements ProjetService {
+    private ProjetRepository projetRepository;
+    public ProjetServiceImpl(ProjetRepository projetRepository) {
+        this.projetRepository = projetRepository;
     }
 
     @Override
     public UUID addProjet(Projet projet) {
-        return projetDao.addProjet(projet);
+        return projetRepository.addProjet(projet);
     }
 
     @Override

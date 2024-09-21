@@ -2,21 +2,20 @@ package ui;
 
 import models.entities.Materiel;
 import models.entities.Projet;
-import services.interfaces.IComposantService;
-import services.interfaces.IProjetService;
+import services.ComposantService;
+import services.ProjetService;
 
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
 public class MaterielMenu {
     private Scanner scanner = new Scanner(System.in);
-    private IComposantService materielService;
-    private IProjetService projetService;
+    private ComposantService materielService;
+    private ProjetService projetService;
     float coefficientQualite = 0.0f;
     boolean isValid = false;
 
-    public MaterielMenu(IComposantService materielService, IProjetService projetService) {
+    public MaterielMenu(ComposantService materielService, ProjetService projetService) {
         this.materielService = materielService;
         this.projetService = projetService;
     }

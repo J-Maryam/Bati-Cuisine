@@ -1,7 +1,7 @@
 package ui;
 
 import models.entities.Client;
-import services.interfaces.IClientService;
+import services.ClientService;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +9,10 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class ClientMenu {
-    private IClientService clientService;
+    private ClientService clientService;
     private Scanner scanner = new Scanner(System.in);
 
-    public ClientMenu(IClientService clientService) {
+    public ClientMenu(ClientService clientService) {
         this.clientService = clientService;
     }
 

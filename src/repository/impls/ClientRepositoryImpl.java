@@ -1,6 +1,6 @@
-package dao.impls;
+package repository.impls;
 
-import dao.interfaces.IClientDao;
+import repository.ClientRepository;
 import models.entities.Client;
 
 import java.sql.Connection;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ClientDao implements IClientDao {
+public class ClientRepositoryImpl implements ClientRepository {
 
     private final Connection connection;
 
-    public ClientDao(Connection  connection) {
+    public ClientRepositoryImpl(Connection  connection) {
         this.connection = connection;
     }
 
