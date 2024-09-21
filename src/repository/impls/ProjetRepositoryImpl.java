@@ -49,8 +49,23 @@ public class ProjetRepositoryImpl implements ProjetRepository {
 
     @Override
     public int updateProjet(Projet projet) {
+        String sql = "UPDATE projets SET nom = ?, surface = ?, margeBeneficiaire = ?, coutTotal = ?, etatProjet = ?, clientId = ? WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, projet.getNom());
+            ps.setDouble(2, projet.getSurface());
+            ps.setDouble(3, projet.getMargeBeneficiaire());
+            ps.setDouble(4, projet.getCoutTotal());
+            ps.setObject(5, projet.getEtatProjet().name(), java.sql.Types.OTHER);
+            ps.setObject(6, projet.getClient().getId());
+            ps.setObject(7, projet.getId());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
+
 
     @Override
     public int deleteProjet(UUID id) {

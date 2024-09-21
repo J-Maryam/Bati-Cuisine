@@ -127,11 +127,9 @@ public class ProjetMenu {
             System.out.print("Entrer la marge bénéficiaire de ce projet : ");
             marge = scanner.nextFloat();
             scanner.nextLine();
-        } else {
-            marge = null;
+            projet.setMargeBeneficiaire(marge);
+            projetService.updateProjet(projet);
         }
-        projet.setMargeBeneficiaire(marge);
-        projetService.addProjet(projet);
 
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
