@@ -118,8 +118,35 @@ public class ProjetMenu {
         UUID projetId = projetService.addProjet(projet);
 
         materielMenu.addMateriel(projetId, projet);
+        String ajouterAutreMateriel;
+        do {
+            System.out.print("Voulez-vous ajouter un autre matériel ? (y/n) : ");
+            ajouterAutreMateriel = scanner.nextLine();
+
+            if (ajouterAutreMateriel.equalsIgnoreCase("y")) {
+                materielMenu.addMateriel(projetId, projet);
+            } else if (!ajouterAutreMateriel.equalsIgnoreCase("n")) {
+                break;
+            } else {
+                System.out.println("Réponse invalide. Veuillez répondre par 'y' ou 'n'.");
+            }
+        } while (!ajouterAutreMateriel.equalsIgnoreCase("n"));
+
 
         mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
+        String ajouterAutreMainDoeuvre;
+        do {
+            System.out.print("Voulez-vous ajouter une autre main d'œuvre ? (y/n) : ");
+            ajouterAutreMainDoeuvre = scanner.nextLine();
+
+            if (ajouterAutreMainDoeuvre.equalsIgnoreCase("y")) {
+                mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
+            } else if (ajouterAutreMainDoeuvre.equalsIgnoreCase("n")) {
+                break;
+            } else {
+                System.out.println("Réponse invalide. Veuillez répondre par 'y' ou 'n'.");
+            }
+        } while (true);
 
         System.out.print("Voulez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();

@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/impls/ClientRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/impls/ClientRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/impls/ClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ClientMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MaterielMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MaterielMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ProjetMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProjetMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +42,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "BC-29-Associer-Client-Projet",
+    "git-widget-placeholder": "BC-1-Suivre-Gestion-Projet",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/marya/Downloads/postgresql-42.7.4.jar",
     "node.js.detected.package.eslint": "true",
