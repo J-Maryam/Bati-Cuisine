@@ -8,4 +8,5 @@ public interface ProjetService {
     int updateProjet(Projet projet);
     double calculateCoutTotalAvantMarge(UUID projetId, Projet projet);
     double calculateMargeBeneficiaire(UUID projetId, Projet projet);
+    double calculateCoutTotalFinal(UUID projetId, Projet projet);
 }

@@ -51,4 +51,10 @@ public class ProjetServiceImpl implements ProjetService {
         return coutTotalAvantMarge * (marge / 100);
     }
 
+    @Override
+    public double calculateCoutTotalFinal(UUID projetId, Projet projet) {
+        double coutTotalAvantMarge = calculateCoutTotalAvantMarge(projetId, projet);
+        double margeBeneficiaire = calculateMargeBeneficiaire(projetId, projet);
+        return coutTotalAvantMarge + margeBeneficiaire;
+    }
 }
