@@ -20,14 +20,16 @@ public class ProjetMenu {
     private MaterielMenu materielMenu;
     private MainDOeuvreMenu mainDOeuvreMenu;
     private ComposantService materielService;
+    private ComposantService mainDOeuvreService;
 
-    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService) {
+    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
         this.materielMenu = materielMenu;
         this.mainDOeuvreMenu = mainDOeuvreMenu;
         this.materielService = materielService;
+        this.mainDOeuvreService = mainDOeuvreService;
     }
 
     public void displayMenu() {
@@ -175,9 +177,13 @@ public class ProjetMenu {
         System.out.printf("\nSurface du projet : %.2f m²", projet.getSurface());
 
         System.out.println("\n--- Détail des Coûts ---");
-        List<Materiel> materiels = materielService.getComposantsByProjet(projet.getId());
+        materielService.getComposantsByProjet(projet.getId());
 
         materielMenu.afficherCoutMateriel(projetId, projet);
+
+        mainDOeuvreService.getComposantsByProjet(projet.getId());
+
+        mainDOeuvreMenu.afficherCoutMainDOeuvre(projetId, projet);
 
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");

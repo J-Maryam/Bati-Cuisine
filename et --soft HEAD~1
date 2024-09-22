@@ -1,0 +1,212 @@
+[33mcommit 3727e17556f3ec12e801b53bcebc700d5e203b30[m[33m ([m[1;36mHEAD -> [m[1;32mBC-18-Calcul-des-Couts[m[33m, [m[1;31morigin/BC-18-Calcul-des-Couts[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sun Sep 22 15:55:58 2024 +0100
+
+    calcul de cout total des materiaux
+
+[33mcommit 8936f3239d936b080798947564e7ee5aff5be3b8[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sun Sep 22 15:03:44 2024 +0100
+
+    get composants by project
+
+[33mcommit 43aa4d8438cabb9d74cd1134942e41489641a9db[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sun Sep 22 01:33:57 2024 +0100
+
+    calcul du cout total
+
+[33mcommit bd7edaa662108e98c17f734c0d660261522c3c66[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sun Sep 22 01:14:05 2024 +0100
+
+    cout de main doeuvre
+
+[33mcommit 93408a6fc99a22e9ffd8be3ac305c734288b18d2[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sun Sep 22 01:11:12 2024 +0100
+
+    cout de materiel
+
+[33mcommit c40152c9b3d0516634057c559214f16ae746b5fd[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/BC-1-Suivre-Gestion-Projet[m[33m, [m[1;32mmaster[m[33m, [m[1;32mBC-1-Suivre-Gestion-Projet[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 21:07:50 2024 +0100
+
+    ajout de plusieurs composants
+
+[33mcommit 35880ca55a2d49f0772296d32e73b641c913c460[m[33m ([m[1;31morigin/BC-29-Associer-Client-Projet[m[33m, [m[1;32mBC-29-Associer-Client-Projet[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 20:38:12 2024 +0100
+
+    assigne le projet à un client
+
+[33mcommit 815dc801c62978684638a43eba0cc7a2327f8bcb[m[33m ([m[1;32mBC-28-Update-Project[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 18:14:20 2024 +0100
+
+    update project
+
+[33mcommit 3f5e84ebdd2be22e04abb1197856c93c9c78a9b5[m[33m ([m[1;31morigin/BC-28-Update-Project[m[33m, [m[1;31morigin/BC-26-Restructuration-du-Projet[m[33m, [m[1;32mBC-26-Restructuration-du-Projet[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 17:52:30 2024 +0100
+
+    restructurer le projet
+
+[33mcommit 29b50fd67ea1ceca723a870f6c406dbd2cfa2532[m[33m ([m[1;31morigin/BC-25-Gestion-de-Main-d-oeuvre[m[33m, [m[1;32mBC-25-Gestion-de-Main-d-oeuvre[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 16:15:14 2024 +0100
+
+    ajout du main d'oeuvre
+
+[33mcommit e0b51d1e1c1b5bb2be863b00f9978917ecd78dee[m[33m ([m[1;31morigin/BC-15-Gestion-des-Materiaux[m[33m, [m[1;32mBC-15-Gestion-des-Materiaux[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Sat Sep 21 12:54:54 2024 +0100
+
+    update le coefficient de qualite pour saisir des nombres valides
+
+[33mcommit 111b6651cf50c9bfbcad3ee84d337604147b15f4[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Fri Sep 20 16:42:06 2024 +0100
+
+    mettre le type de composnat equal materiel par defaut
+
+[33mcommit babab18198693228c831806fd7d9db6a87207d93[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Fri Sep 20 16:35:18 2024 +0100
+
+    ajout du materiel
+
+[33mcommit e5987e851ba9e37eab3d70f165d519971f270be2[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Fri Sep 20 16:34:45 2024 +0100
+
+    update projet pour retourner l id generer pour l'utiliser dans composant
+
+[33mcommit 7683e539ad3d098500ebe5843bc95e5221bbcd2e[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Fri Sep 20 16:29:00 2024 +0100
+
+    update db
+
+[33mcommit 4fa76f98f3fd4458a13abb48dc7f3b2a40b85648[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 21:13:42 2024 +0100
+
+    creation de dao et service pour la gestion des materiels (interfaces & impls)
+
+[33mcommit 67e25b20e6471428e02b00f6e940a1fc0436b731[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 16:50:34 2024 +0100
+
+    ajout de getters et setters dans la classe de Composant
+
+[33mcommit 87598e4b6fd71ee687c00559c6c6092402f38ecf[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 16:35:48 2024 +0100
+
+    creation des dao et de services : interfaces et implemts
+
+[33mcommit f9a800b92b3b8b3f59e7f18af61346c4bebb382f[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 16:08:57 2024 +0100
+
+    update db
+
+[33mcommit 175db26828bf198c14b267308506933eb47b9f0b[m[33m ([m[1;31morigin/BC-14-Gestion-des-Projets[m[33m, [m[1;32mBC-14-Gestion-des-Projets[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 15:13:35 2024 +0100
+
+    ajout du projet (affecteer un client au projet)
+
+[33mcommit 83098412329db163ad727191e46b95ce806ef38a[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 15:12:41 2024 +0100
+
+    update la methode de search client
+
+[33mcommit 5b37ac02b28b81698ef6f5eaff585cdc8140977f[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 15:09:32 2024 +0100
+
+    update dbFunctions
+
+[33mcommit 0f8397956c447570ec7f7ba66f85bbfa8dfbb7b8[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 15:08:42 2024 +0100
+
+    update db : ajout de l'attribut marge beneficiaire
+
+[33mcommit 073d9795aab7f2930d6a7fbce00f0e747b270fb5[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 09:08:52 2024 +0100
+
+    ajout de l'attribut margeBeneficiaire dans la classe de Projet
+
+[33mcommit 369e9d0b725f494190b6461591a1d4b40680b3e7[m[33m ([m[1;31morigin/BC-16-Gestion-des-Clients[m[33m, [m[1;32mBC-16-Gestion-des-Clients[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Thu Sep 19 00:07:36 2024 +0100
+
+    search client by name
+
+[33mcommit ae3c79648651f4a691d270db11f4b4d62a016a8e[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 23:54:51 2024 +0100
+
+    show all clients
+
+[33mcommit a090d0eaac598a9271db676eaa8d85a734579729[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 23:13:08 2024 +0100
+
+    delete client
+
+[33mcommit 57371c916066363400ecac2b5f1ece69639ed656[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 21:50:39 2024 +0100
+
+    update client
+
+[33mcommit b797cd354d7d5dd829d7c0363a448482eec705bd[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 21:08:51 2024 +0100
+
+    ajout du client
+
+[33mcommit 4948411851ba43ba5b7c58daa17c5b9e6aac24fb[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 15:50:36 2024 +0100
+
+    add client (dao and service
+
+[33mcommit bb9b4f18cd3baba550c4a7cf9dbb162161014035[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 14:20:43 2024 +0100
+
+    add Client Dao (implementation)
+
+[33mcommit 5616e38d60d667a1ecfd937f6a219eb9ab8efeb9[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 11:52:33 2024 +0100
+
+    update Client: ajout la liste des projets
+
+[33mcommit 25c6520b5fed50b712dbfe4e46830dedc14c76c2[m[33m ([m[1;31morigin/BC-24-Singleton[m[33m, [m[1;32mBC-24-Singleton[m[33m)[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 10:22:51 2024 +0100
+
+    Connexion à la database en utilisant Singleton
+
+[33mcommit 6ba9d180d9487374064a2bf77156e955026d88a4[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 09:44:35 2024 +0100
+
+    creation des classes Composant, MainDOeuvre, Materiel et Devi
+
+[33mcommit 79934dd06f6c02bbd5737dddd14246e3c214ce28[m
+Author: J-Maryam <132862036+J-Maryam@users.noreply.github.com>
+Date:   Wed Sep 18 09:43:18 2024 +0100
+
+    update database : ajouter lheritage entre les classes
+
+[33mcommit 89c2f6e1746c42bb41b076457c5b244b31434f9e[m
+Author: J-Maryam <132862036+J-Mar

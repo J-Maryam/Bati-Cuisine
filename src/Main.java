@@ -29,28 +29,23 @@ public class Main {
 
         ClientRepository clientRepository = new ClientRepositoryImpl(connection);
         ClientService clientService = new ClientServiceImpl(clientRepository);
-
         ClientMenu clientMenu = new ClientMenu(clientService);
-//        clientMenu.searchClientByName();
 
         ProjetRepository projetRepository = new ProjetRepositoryImpl(connection);
 
         ComposantRepository materielRepository = new MaterielRepositoryImpl(connection);
         ComposantService materielService = new MaterielServiceImpl(materielRepository);
 
-
-//        materielMenu.addMateriel();
-
         ComposantRepository mainDOeuvreRepository = new MainDOeuvreRepositoryImpl(connection);
         ComposantService mainDOeuvreService = new MainDOeuvreServiceImpl(mainDOeuvreRepository);
 
-        ProjetService projetService = new ProjetServiceImpl(projetRepository, materielService, materielService);
+        ProjetService projetService = new ProjetServiceImpl(projetRepository, materielService, mainDOeuvreService);
 
         MaterielMenu materielMenu = new MaterielMenu(materielService, projetService);
 
         MainDOeuvreMenu mainDOeuvreMenu = new MainDOeuvreMenu(mainDOeuvreService, projetService);
 
-        ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, mainDOeuvreService);
+        ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, materielService, mainDOeuvreService);
         projetMenu.addProject();
     }
 
