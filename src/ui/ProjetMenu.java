@@ -191,8 +191,11 @@ public class ProjetMenu {
         double margeBeneficiaire = projetService.calculateMargeBeneficiaire(projetId, projet);
         System.out.printf("Marge beneficiaire : %.2f €%n", margeBeneficiaire);
 
-        double coutTotalFinal = projetService.calculateCoutTotalFinal(projetId, projet);
+        float coutTotalFinal = (float) projetService.calculateCoutTotalFinal(projetId, projet);
         System.out.printf("* Coût total final du projet : %.2f € *%n", coutTotalFinal);
+
+        projet.setCoutTotal(coutTotalFinal);
+        projetService.updateProjet(projet);
 
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
