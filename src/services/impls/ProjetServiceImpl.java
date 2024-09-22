@@ -1,5 +1,6 @@
 package services.impls;
 
+import models.entities.MainDOeuvre;
 import models.entities.Materiel;
 import repository.ProjetRepository;
 import models.entities.Projet;
@@ -32,35 +33,14 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
-    public int deleteProjet(UUID id) {
-        return 0;
-    }
+    public double calculateCoutTotalAvantMarge(UUID projetId, Projet projet) {
+        List<Materiel> materiels = materielService.getComposantsByProjet(projetId);
+        List<MainDOeuvre> mainDOeuvres = mainDOeuvreService.getComposantsByProjet(projetId);
 
-    @Override
-    public Optional<Projet> getProjetById(UUID id) {
-        return Optional.empty();
-    }
+        float coutTotalMateriaux = (float) materielService.CalculateCoutTotalComposant(materiels, projet);
+        float coutTotalMainDOeuvres = (float) mainDOeuvreService.CalculateCoutTotalComposant(mainDOeuvres, projet);
 
-    @Override
-    public Optional<Projet> getProjetByName(String projectName) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Projet> getAllProjet() {
-        return List.of();
-    }
-
-    @Override
-    public double calculateCoutTotal(Projet projet) {
-        float coutMateriaux = (float) materielService.CalculateCoutTotalComposant(projet.getComposants(), projet);
-        float coutMainDOeuvre = (float) mainDOeuvreService.CalculateCoutTotalComposant(projet.getComposants(), projet);
-
-        float coutTotalAvantMarge = coutMateriaux + coutMainDOeuvre;
-        float marge = coutTotalAvantMarge * (projet.getMargeBeneficiaire() / 100);
-        float coutTotalFinal = marge + coutTotalAvantMarge;
-
-        projet.setCoutTotal(coutTotalFinal);
-        return coutTotalFinal;
+        float coutTotalAvantMarge = coutTotalMateriaux + coutTotalMainDOeuvres;
+        return coutTotalAvantMarge;
     }
 }

@@ -185,6 +185,9 @@ public class ProjetMenu {
 
         mainDOeuvreMenu.afficherCoutMainDOeuvre(projetId, projet);
 
+        double coutTotalAvantMarge = projetService.calculateCoutTotalAvantMarge(projetId, projet);
+        System.out.printf("Coût total avant marge : %.2f €%n", coutTotalAvantMarge);
+
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
         } else {
