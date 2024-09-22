@@ -43,4 +43,12 @@ public class ProjetServiceImpl implements ProjetService {
         float coutTotalAvantMarge = coutTotalMateriaux + coutTotalMainDOeuvres;
         return coutTotalAvantMarge;
     }
+
+    @Override
+    public double calculateMargeBeneficiaire(UUID projetId, Projet projet) {
+        double coutTotalAvantMarge = calculateCoutTotalAvantMarge(projetId, projet);
+        double marge = projet.getMargeBeneficiaire();
+        return coutTotalAvantMarge * (marge / 100);
+    }
+
 }
