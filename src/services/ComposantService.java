@@ -9,10 +9,6 @@ import java.util.UUID;
 
 public interface ComposantService<T> {
     int addComposant(T composant, UUID projetId);
-    int updateComposant(T composant);
-    int deleteComposant(UUID id);
-    Optional<T> getComposantById(UUID id);
-    List<T> getComposants();
-    double CalculateCoutComposant(List<T> composants, Projet projet);
+    List<T> getComposantsByProjet(UUID projetId);
 
 }

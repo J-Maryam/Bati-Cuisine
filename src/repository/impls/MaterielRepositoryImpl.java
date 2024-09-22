@@ -6,7 +6,9 @@ import models.enums.TypeComposant;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -41,22 +43,32 @@ public class MaterielRepositoryImpl implements ComposantRepository<Materiel> {
     }
 
     @Override
-    public int updateComposant(Materiel Materiel) {
-        return 0;
+    public List<Materiel> getComposantsByProjet(UUID projetId) {
+        List<Materiel> materiels = new ArrayList<>();
+        String query = "SELECT * FROM materiaux WHERE projetId = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setObject(1, projetId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Materiel materiel = new Materiel();
+                materiel.setId((UUID) rs.getObject("id"));
+                materiel.setNom(rs.getString("nom"));
+                materiel.setTauxTVA(rs.getFloat("tauxTVA"));
+                materiel.setCoutUnitaire(rs.getFloat("coutUnitaire"));
+                materiel.setQuantite(rs.getFloat("quantite"));
+                materiel.setCoutTransport(rs.getFloat("coutTransport"));
+                materiel.setCoefficientQualite(rs.getFloat("coefficientQualite"));
+
+                materiels.add(materiel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return materiels;
     }
 
-    @Override
-    public int deleteComposant(UUID id) {
-        return 0;
-    }
 
-    @Override
-    public Optional<Materiel> getComposantById(UUID id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Materiel> getComposants() {
-        return List.of();
-    }
 }
