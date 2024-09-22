@@ -10,5 +10,6 @@ import java.util.UUID;
 public interface ComposantService<T> {
     int addComposant(T composant, UUID projetId);
     List<T> getComposantsByProjet(UUID projetId);
+    double CalculateCoutTotalComposant(List<T> composants, Projet projet);
 
 }

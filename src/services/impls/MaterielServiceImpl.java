@@ -29,4 +29,11 @@ public class MaterielServiceImpl implements ComposantService<Materiel> {
         List<Materiel> materiels = materielRepository.getComposantsByProjet(projetId);
         return materiels;
     }
+
+    @Override
+    public double CalculateCoutTotalComposant(List<Materiel> materiels, Projet projet) {
+        return materiels.stream()
+                .mapToDouble(Materiel::calculerCout)
+                .sum();
+    }
 }
