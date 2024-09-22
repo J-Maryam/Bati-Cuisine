@@ -1,5 +1,7 @@
 package services.impls;
 
+import models.entities.Composant;
+import models.entities.Projet;
 import repository.ComposantRepository;
 import models.entities.MainDOeuvre;
 import services.ComposantService;
@@ -38,5 +40,16 @@ public class MainDOeuvreServiceImpl implements ComposantService<MainDOeuvre> {
     @Override
     public List<MainDOeuvre> getComposants() {
         return List.of();
+    }
+
+    @Override
+    public double CalculateCoutComposant(List<MainDOeuvre> mainDOeuvres, Projet projet) {
+        return projet.getComposants().stream()
+                .filter(c -> c instanceof MainDOeuvre)
+                .mapToDouble(c -> {
+                    MainDOeuvre m = (MainDOeuvre) c;
+                    return m.getTauxHoraire() * m.getHeuresTravail() * m.getProductiviteOuvrier();
+                })
+                .sum();
     }
 }
