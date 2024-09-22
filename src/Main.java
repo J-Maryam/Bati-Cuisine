@@ -34,15 +34,20 @@ public class Main {
 //        clientMenu.searchClientByName();
 
         ProjetRepository projetRepository = new ProjetRepositoryImpl(connection);
-        ProjetService projetService = new ProjetServiceImpl(projetRepository);
 
         ComposantRepository materielRepository = new MaterielRepositoryImpl(connection);
         ComposantService materielService = new MaterielServiceImpl(materielRepository);
-        MaterielMenu materielMenu = new MaterielMenu(materielService, projetService);
+
+
 //        materielMenu.addMateriel();
 
         ComposantRepository mainDOeuvreRepository = new MainDOeuvreRepositoryImpl(connection);
         ComposantService mainDOeuvreService = new MainDOeuvreServiceImpl(mainDOeuvreRepository);
+
+        ProjetService projetService = new ProjetServiceImpl(projetRepository, materielService, materielService);
+
+        MaterielMenu materielMenu = new MaterielMenu(materielService, projetService);
+
         MainDOeuvreMenu mainDOeuvreMenu = new MainDOeuvreMenu(mainDOeuvreService, projetService);
 
         ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu);

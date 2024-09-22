@@ -13,4 +13,5 @@ public interface ProjetService {
     Optional<Projet> getProjetById(UUID id);
     Optional<Projet> getProjetByName(String projectName);
     List<Projet> getAllProjet();
+    double calculateCoutTotal(Projet projet);
 }

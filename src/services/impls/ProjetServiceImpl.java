@@ -1,7 +1,9 @@
 package services.impls;
 
+import models.entities.Materiel;
 import repository.ProjetRepository;
 import models.entities.Projet;
+import services.ComposantService;
 import services.ProjetService;
 
 import java.util.List;
@@ -10,8 +12,13 @@ import java.util.UUID;
 
 public class ProjetServiceImpl implements ProjetService {
     private ProjetRepository projetRepository;
-    public ProjetServiceImpl(ProjetRepository projetRepository) {
+    private ComposantService materielService;
+    private ComposantService mainDOeuvreService
+            ;
+    public ProjetServiceImpl(ProjetRepository projetRepository, ComposantService materielService, ComposantService mainDOeuvreService) {
         this.projetRepository = projetRepository;
+        this.materielService = materielService;
+        this.mainDOeuvreService = mainDOeuvreService;
     }
 
     @Override
@@ -42,5 +49,18 @@ public class ProjetServiceImpl implements ProjetService {
     @Override
     public List<Projet> getAllProjet() {
         return List.of();
+    }
+
+    @Override
+    public double calculateCoutTotal(Projet projet) {
+        float coutMateriaux = (float) materielService.CalculateCoutComposant(projet.getComposants(), projet);
+        float coutMainDOeuvre = (float) mainDOeuvreService.CalculateCoutComposant(projet.getComposants(), projet);
+
+        float coutTotalAvantMarge = coutMateriaux + coutMainDOeuvre;
+        float marge = coutTotalAvantMarge * (projet.getMargeBeneficiaire() / 100);
+        float coutTotalFinal = marge + coutTotalAvantMarge;
+
+        projet.setCoutTotal(coutTotalFinal);
+        return coutTotalFinal;
     }
 }
