@@ -1,10 +1,12 @@
 package ui;
 
+import models.entities.Composant;
 import models.entities.Materiel;
 import models.entities.Projet;
 import services.ComposantService;
 import services.ProjetService;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -72,5 +74,37 @@ public class MaterielMenu {
         } else {
             System.out.println("Une erreur est survenue lors de l'ajout du matériau.");
         }
+    }
+
+    public void afficherCoutMateriel(UUID projetId, Projet projet) {
+        System.out.println("1- Matériaux :");
+
+        double coutTotal = 0;
+
+        List<Materiel> materielsDuProjet = materielService.getComposantsByProjet(projetId);
+
+        if (materielsDuProjet.isEmpty()) {
+            System.out.println("Aucun matériau associé à ce projet.");
+            return;
+        }
+
+        coutTotal = materielService.CalculateCoutTotalComposant(materielsDuProjet, projet);
+
+        for (Materiel materiel : materielsDuProjet) {
+            double cout = materiel.calculerCout();
+            System.out.printf("- %s : %.2f € (quantité : %.2f, coût unitaire : %.2f €, qualité : %.2f, transport : %.2f €)%n",
+                    materiel.getNom(),
+                    cout,
+                    materiel.getQuantite(),
+                    materiel.getCoutUnitaire(),
+                    materiel.getCoefficientQualite(),
+                    materiel.getCoutTransport()
+            );
+        }
+
+        System.out.printf("**Coût total des matériaux avant TVA : %.2f €**%n", coutTotal);
+
+        double coutTotalAvecTVA = coutTotal * 1.20;
+        System.out.printf("**Coût total des matériaux avec TVA (20%%) : %.2f €**%n", coutTotalAvecTVA);
     }
 }
