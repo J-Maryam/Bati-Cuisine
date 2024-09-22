@@ -1,10 +1,12 @@
 package ui;
 
 import models.entities.MainDOeuvre;
+import models.entities.Materiel;
 import models.entities.Projet;
 import services.ComposantService;
 import services.ProjetService;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -69,4 +71,36 @@ public class MainDOeuvreMenu {
             System.out.println("Une erreur est survenue lors de l'ajout du main-d'œuvre.");
         }
     }
+
+    public void afficherCoutMainDOeuvre(UUID projetId, Projet projet) {
+        System.out.println("2- Mains d'oeuvres :");
+
+        double coutTotal = 0;
+
+        List<MainDOeuvre> mainDOeuvresDuProjet = mainDOeuvreService.getComposantsByProjet(projetId);
+
+        if (mainDOeuvresDuProjet.isEmpty()) {
+            System.out.println("Aucun main d'oeuvre associé à ce projet.");
+            return;
+        }
+
+        coutTotal = mainDOeuvreService.CalculateCoutTotalComposant(mainDOeuvresDuProjet, projet);
+
+        for (MainDOeuvre mainDOeuvre : mainDOeuvresDuProjet) {
+            double cout = mainDOeuvre.calculerCout();
+            System.out.printf("- %s : %.2f € (taux horaire : %.2f €/H, heures de travail : %.2f H, productivité des ouvriers : %.2f)%n",
+                    mainDOeuvre.getNom(),
+                    cout,
+                    mainDOeuvre.getTauxHoraire(),
+                    mainDOeuvre.getHeuresTravail(),
+                    mainDOeuvre.getProductiviteOuvrier()
+            );
+        }
+
+        System.out.printf("** Coût total des mains d'oeuvre avant TVA : %.2f € **%n", coutTotal);
+
+        double coutTotalAvecTVA = coutTotal * 1.20;
+        System.out.printf("** Coût total des mains d'oeuvre avec TVA (20%%) : %.2f € **%n", coutTotalAvecTVA);
+    }
+
 }
