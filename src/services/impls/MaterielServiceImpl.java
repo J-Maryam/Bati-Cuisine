@@ -1,5 +1,7 @@
 package services.impls;
 
+import models.entities.Composant;
+import models.entities.Projet;
 import repository.ComposantRepository;
 import models.entities.Materiel;
 import services.ComposantService;
@@ -38,5 +40,16 @@ public class MaterielServiceImpl implements ComposantService<Materiel> {
     @Override
     public List<Materiel> getComposants() {
         return List.of();
+    }
+
+    @Override
+    public double CalculateCoutComposant(List<Materiel> materiels, Projet projet) {
+        return projet.getComposants().stream()
+                .filter(c -> c instanceof Materiel)
+                .mapToDouble(c -> {
+                    Materiel m = (Materiel) c;
+                    return (m.getCoutUnitaire() * m.getQuantite() * m.getCoefficientQualite()) + m.getCoutTransport();
+                })
+                .sum();
     }
 }
