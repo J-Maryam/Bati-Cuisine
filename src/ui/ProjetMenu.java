@@ -1,10 +1,13 @@
 package ui;
 
 import models.entities.Client;
+import models.entities.Materiel;
 import models.entities.Projet;
 import services.ClientService;
+import services.ComposantService;
 import services.ProjetService;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
@@ -16,13 +19,15 @@ public class ProjetMenu {
     private ClientMenu clientMenu;
     private MaterielMenu materielMenu;
     private MainDOeuvreMenu mainDOeuvreMenu;
+    private ComposantService materielService;
 
-    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu) {
+    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
         this.materielMenu = materielMenu;
         this.mainDOeuvreMenu = mainDOeuvreMenu;
+        this.materielService = materielService;
     }
 
     public void displayMenu() {
@@ -148,7 +153,9 @@ public class ProjetMenu {
             }
         } while (true);
 
-        System.out.print("Voulez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
+        System.out.println("--- Calcul du coût total ---");
+
+        System.out.print("Souhaitez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();
         if (reponse.equals("y")) {
             System.out.print("Entrer la marge bénéficiaire de ce projet : ");
@@ -157,6 +164,20 @@ public class ProjetMenu {
             projet.setMargeBeneficiaire(marge);
             projetService.updateProjet(projet);
         }
+
+        System.out.println("Calcul du coût en cours...\n");
+
+        System.out.println("--- Résultat du Calcul ---\n");
+
+        System.out.printf("Nom du projet : %s", projet.getNom());
+        System.out.printf("\nClient : %s", projet.getClient().getNom());
+        System.out.printf("\nAdresse du chantier : %s", projet.getClient().getAdresse());
+        System.out.printf("\nSurface du projet : %.2f m²", projet.getSurface());
+
+        System.out.println("\n--- Détail des Coûts ---");
+        List<Materiel> materiels = materielService.getComposantsByProjet(projet.getId());
+
+        materielMenu.afficherCoutMateriel(projetId, projet);
 
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");

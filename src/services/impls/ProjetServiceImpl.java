@@ -53,8 +53,8 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public double calculateCoutTotal(Projet projet) {
-        float coutMateriaux = (float) materielService.CalculateCoutComposant(projet.getComposants(), projet);
-        float coutMainDOeuvre = (float) mainDOeuvreService.CalculateCoutComposant(projet.getComposants(), projet);
+        float coutMateriaux = (float) materielService.CalculateCoutTotalComposant(projet.getComposants(), projet);
+        float coutMainDOeuvre = (float) mainDOeuvreService.CalculateCoutTotalComposant(projet.getComposants(), projet);
 
         float coutTotalAvantMarge = coutMateriaux + coutMainDOeuvre;
         float marge = coutTotalAvantMarge * (projet.getMargeBeneficiaire() / 100);

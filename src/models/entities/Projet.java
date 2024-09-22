@@ -2,6 +2,7 @@ package models.entities;
 
 import models.enums.EtatProjet;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,9 @@ public class Projet {
     private Client client;
     private List<Composant> composants;
 
-    public Projet() {}
+    public Projet() {
+        this.composants = new ArrayList<>();
+    }
 
     public Projet(UUID id, String nom, float surface, float margeBeneficiaire, float coutTotal, EtatProjet etatProjet, Client client, List<Composant> composants) {
         this.id = id;
