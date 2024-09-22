@@ -1,12 +1,15 @@
 package repository.impls;
 
+import models.entities.Materiel;
 import repository.ComposantRepository;
 import models.entities.MainDOeuvre;
 import models.enums.TypeComposant;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,22 +43,30 @@ public class MainDOeuvreRepositoryImpl implements ComposantRepository<MainDOeuvr
     }
 
     @Override
-    public int updateComposant(MainDOeuvre mainDOeuvre) {
-        return 0;
-    }
+    public List<MainDOeuvre> getComposantsByProjet(UUID projetId) {
+        List<MainDOeuvre> mainDOeuvres = new ArrayList<>();
+        String query = "SELECT * FROM mainDOeuvres WHERE projetId = ?";
 
-    @Override
-    public int deleteComposant(UUID id) {
-        return 0;
-    }
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setObject(1, projetId);
+            ResultSet rs = ps.executeQuery();
 
-    @Override
-    public Optional<MainDOeuvre> getComposantById(UUID id) {
-        return Optional.empty();
-    }
+            while (rs.next()) {
+                MainDOeuvre mainDOeuvre = new MainDOeuvre();
+                mainDOeuvre.setId((UUID) rs.getObject("id"));
+                mainDOeuvre.setNom(rs.getString("nom"));
+                mainDOeuvre.setTauxTVA(rs.getFloat("tauxTVA"));
+                mainDOeuvre.setTauxHoraire(rs.getFloat("tauxHoraire"));
+                mainDOeuvre.setHeuresTravail(rs.getFloat("heuresTravail"));
+                mainDOeuvre.setProductiviteOuvrier(rs.getFloat("productiviteOuvrier"));
 
-    @Override
-    public List<MainDOeuvre> getComposants() {
-        return List.of();
-    }
+                mainDOeuvres.add(mainDOeuvre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mainDOeuvres;    }
+
+
 }
