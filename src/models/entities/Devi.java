@@ -9,17 +9,15 @@ public class Devi {
     private float montantEstime;
     private LocalDate dateEmission;
     private LocalDate dateValidite;
-    private float tva;
     private boolean accepte;
     private Projet projet;
 
     public Devi() {}
-    public Devi(UUID id, float montantEstime, LocalDate dateEmission, LocalDate dateValidite, float tva, boolean accepte, Projet projet) {
+    public Devi(UUID id, float montantEstime, LocalDate dateEmission, LocalDate dateValidite, boolean accepte, Projet projet) {
         this.id = id;
         this.montantEstime = montantEstime;
         this.dateEmission = dateEmission;
         this.dateValidite = dateValidite;
-        this.tva = tva;
         this.accepte = accepte;
         this.projet = projet;
     }
@@ -54,14 +52,6 @@ public class Devi {
 
     public void setDateValidite(LocalDate dateValidite) {
         this.dateValidite = dateValidite;
-    }
-
-    public float getTva() {
-        return tva;
-    }
-
-    public void setTva(float tva) {
-        this.tva = tva;
     }
 
     public boolean isAccepte() {
