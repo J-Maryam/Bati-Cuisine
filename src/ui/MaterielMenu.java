@@ -92,19 +92,18 @@ public class MaterielMenu {
 
         for (Materiel materiel : materielsDuProjet) {
             double cout = materiel.calculerCout();
-            System.out.printf("- %s : %.2f € (quantité : %.2f, coût unitaire : %.2f €, qualité : %.2f, transport : %.2f €)%n",
+            System.out.printf("- %s : %.2f € (quantité : %.0f, coût unitaire : %.2f €, qualité : %.0f, transport : %.2f €, TVA : %.0f %%)%n",
                     materiel.getNom(),
                     cout,
                     materiel.getQuantite(),
                     materiel.getCoutUnitaire(),
                     materiel.getCoefficientQualite(),
-                    materiel.getCoutTransport()
+                    materiel.getCoutTransport(),
+                    materiel.getTauxTVA()
             );
         }
 
-        System.out.printf("**Coût total des matériaux avant TVA : %.2f €**%n", coutTotal);
+        System.out.printf("**Coût total des matériaux : %.2f €**%n", coutTotal);
 
-        double coutTotalAvecTVA = coutTotal * 1.20;
-        System.out.printf("**Coût total des matériaux avec TVA (20%%) : %.2f €**%n", coutTotalAvecTVA);
     }
 }

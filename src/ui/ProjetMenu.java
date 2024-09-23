@@ -39,9 +39,9 @@ public class ProjetMenu {
 
         int choice;
         while (running) {
-            System.out.println("==== Project Menu ====");
+            System.out.println("==== Menu Principale ====");
             System.out.println("1. Créer un nouveau projet");
-            System.out.println("2.  Afficher les projets existants");
+            System.out.println("2. Afficher les projets existants");
             System.out.println("3. Calculer le coût d'un projet");
             System.out.println("0. Quitter");
             System.out.print("Enter your choice: ");
@@ -183,7 +183,7 @@ public class ProjetMenu {
         mainDOeuvreMenu.afficherCoutMainDOeuvre(projetId, projet);
 
         double coutTotalAvantMarge = projetService.calculateCoutTotalAvantMarge(projetId, projet);
-        System.out.printf("Coût total avant marge : %.2f €%n", coutTotalAvantMarge);
+        System.out.printf("Coût total avant la marge beneficiaire : %.2f €%n", coutTotalAvantMarge);
 
         double margeBeneficiaire = projetService.calculateMargeBeneficiaire(projetId, projet);
         System.out.printf("Marge beneficiaire : %.2f €%n", margeBeneficiaire);

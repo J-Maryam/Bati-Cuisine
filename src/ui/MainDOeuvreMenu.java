@@ -88,19 +88,17 @@ public class MainDOeuvreMenu {
 
         for (MainDOeuvre mainDOeuvre : mainDOeuvresDuProjet) {
             double cout = mainDOeuvre.calculerCout();
-            System.out.printf("- %s : %.2f € (taux horaire : %.2f €/H, heures de travail : %.2f H, productivité des ouvriers : %.2f)%n",
+            System.out.printf("- %s : %.2f € (taux horaire : %.2f €/H, heures de travail : %.0f H, productivité des ouvriers : %.0f, TVA : %.0f %%)%n",
                     mainDOeuvre.getNom(),
                     cout,
                     mainDOeuvre.getTauxHoraire(),
                     mainDOeuvre.getHeuresTravail(),
-                    mainDOeuvre.getProductiviteOuvrier()
+                    mainDOeuvre.getProductiviteOuvrier(),
+                    mainDOeuvre.getTauxTVA()
             );
         }
 
-        System.out.printf("** Coût total des mains d'oeuvre avant TVA : %.2f € **%n", coutTotal);
-
-        double coutTotalAvecTVA = coutTotal * 1.20;
-        System.out.printf("** Coût total des mains d'oeuvre avec TVA (20%%) : %.2f € **%n", coutTotalAvecTVA);
-    }
+        System.out.printf("** Coût total des mains d'oeuvre : %.2f € **%n", coutTotal);
+   }
 
 }
