@@ -1,23 +1,16 @@
 import config.DbFunctions;
-import repository.impls.ClientRepositoryImpl;
-import repository.impls.MainDOeuvreRepositoryImpl;
-import repository.impls.MaterielRepositoryImpl;
-import repository.impls.ProjetRepositoryImpl;
+import repository.DeviRepository;
+import repository.impls.*;
 import repository.ClientRepository;
 
 import repository.ComposantRepository;
 import repository.ProjetRepository;
-import services.impls.ClientServiceImpl;
-import services.impls.MainDOeuvreServiceImpl;
-import services.impls.MaterielServiceImpl;
+import services.DeviService;
+import services.impls.*;
 import services.ClientService;
 import services.ComposantService;
 import services.ProjetService;
-import services.impls.ProjetServiceImpl;
-import ui.ClientMenu;
-import ui.MainDOeuvreMenu;
-import ui.MaterielMenu;
-import ui.ProjetMenu;
+import ui.*;
 
 import java.sql.Connection;
 
@@ -45,7 +38,11 @@ public class Main {
 
         MainDOeuvreMenu mainDOeuvreMenu = new MainDOeuvreMenu(mainDOeuvreService, projetService);
 
-        ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, materielService, mainDOeuvreService);
+        DeviRepository deviRepository = new DeviRepositoryImpl(connection);
+        DeviService deviService = new DeviServiceImpl(deviRepository);
+        DeviMenu deviMenu = new DeviMenu(deviService, projetService);
+
+        ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, materielService, mainDOeuvreService, deviMenu);
         projetMenu.addProject();
     }
 

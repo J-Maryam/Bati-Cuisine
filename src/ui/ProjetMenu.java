@@ -21,8 +21,9 @@ public class ProjetMenu {
     private MainDOeuvreMenu mainDOeuvreMenu;
     private ComposantService materielService;
     private ComposantService mainDOeuvreService;
+    private DeviMenu deviMenu;
 
-    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService) {
+    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviMenu deviMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
@@ -30,6 +31,7 @@ public class ProjetMenu {
         this.mainDOeuvreMenu = mainDOeuvreMenu;
         this.materielService = materielService;
         this.mainDOeuvreService = mainDOeuvreService;
+        this.deviMenu = deviMenu;
     }
 
     public void displayMenu() {
@@ -197,11 +199,15 @@ public class ProjetMenu {
         projet.setCoutTotal(coutTotalFinal);
         projetService.updateProjet(projet);
 
-        if (projetId != null) {
-            System.out.println("Projet ajouté avec succès.");
-        } else {
-            System.out.println("Une erreur est survenue lors de l'ajout du projet.");
-        }
+        deviMenu.addDevi(projetId);
+
+        System.out.println("--- Fin du projet ---");
+
+//        if (projetId != null) {
+//            System.out.println("Projet ajouté avec succès.");
+//        } else {
+//            System.out.println("Une erreur est survenue lors de l'ajout du projet.");
+//        }
     }
 
     public Client addNewClient() {
