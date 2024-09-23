@@ -1,7 +1,6 @@
 package ui;
 
 import models.entities.MainDOeuvre;
-import models.entities.Materiel;
 import models.entities.Projet;
 import services.ComposantService;
 import services.ProjetService;
@@ -10,14 +9,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class MainDOeuvreMenu {
+public class MainDOeuvreUi {
     private Scanner scanner = new Scanner(System.in);
     private ComposantService mainDOeuvreService;
     private ProjetService projetService;
     float productiviteOuvrier = 0.0f;
     boolean isValid = false;
 
-    public MainDOeuvreMenu(ComposantService mainDOeuvreService, ProjetService projetService) {
+    public MainDOeuvreUi(ComposantService mainDOeuvreService, ProjetService projetService) {
         this.mainDOeuvreService = mainDOeuvreService;
         this.projetService = projetService;
     }

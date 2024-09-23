@@ -8,54 +8,12 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class ClientMenu {
+public class ClientUi {
     private ClientService clientService;
     private Scanner scanner = new Scanner(System.in);
 
-    public ClientMenu(ClientService clientService) {
+    public ClientUi(ClientService clientService) {
         this.clientService = clientService;
-    }
-
-    public void displayMenu() {
-        boolean running = true;
-
-        int choice;
-        while (running) {
-            System.out.println("==== Client Menu ====");
-            System.out.println("1. Add new Client");
-            System.out.println("2. Update Client");
-            System.out.println("3. Delete Client");
-            System.out.println("4. Search Client");
-            System.out.println("5. Show all Clients");
-            System.out.println("0. Back to the main menu");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    addClient();
-                    break;
-                case 2:
-                    updateClient();
-                    break;
-                case 3:
-                    deleteClient();
-                    break;
-                case 4:
-                    searchClientByName();
-                    break;
-                case 5:
-                    getAllClient();
-                    break;
-                case 0:
-                    System.out.println("Exiting client menu...");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
     }
 
     public UUID addClient() {

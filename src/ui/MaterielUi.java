@@ -1,6 +1,5 @@
 package ui;
 
-import models.entities.Composant;
 import models.entities.Materiel;
 import models.entities.Projet;
 import services.ComposantService;
@@ -10,14 +9,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class MaterielMenu {
+public class MaterielUi {
     private Scanner scanner = new Scanner(System.in);
     private ComposantService materielService;
     private ProjetService projetService;
     float coefficientQualite = 0.0f;
     boolean isValid = false;
 
-    public MaterielMenu(ComposantService materielService, ProjetService projetService) {
+    public MaterielUi(ComposantService materielService, ProjetService projetService) {
         this.materielService = materielService;
         this.projetService = projetService;
     }

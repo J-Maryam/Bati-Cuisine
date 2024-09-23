@@ -1,7 +1,6 @@
 package ui;
 
 import models.entities.Client;
-import models.entities.Materiel;
 import models.entities.Projet;
 import services.ClientService;
 import services.ComposantService;
@@ -12,18 +11,18 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class ProjetMenu {
+public class ProjetUi {
     private Scanner scanner = new Scanner(System.in);
     private ProjetService projetService;
     private ClientService clientService;
-    private ClientMenu clientMenu;
-    private MaterielMenu materielMenu;
-    private MainDOeuvreMenu mainDOeuvreMenu;
+    private ClientUi clientMenu;
+    private MaterielUi materielMenu;
+    private MainDOeuvreUi mainDOeuvreMenu;
     private ComposantService materielService;
     private ComposantService mainDOeuvreService;
-    private DeviMenu deviMenu;
+    private DeviUi deviMenu;
 
-    public ProjetMenu(ProjetService projetService, ClientService clientService, ClientMenu clientMenu, MaterielMenu materielMenu, MainDOeuvreMenu mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviMenu deviMenu) {
+    public ProjetUi(ProjetService projetService, ClientService clientService, ClientUi clientMenu, MaterielUi materielMenu, MainDOeuvreUi mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviUi deviMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
         this.clientMenu = clientMenu;
@@ -34,7 +33,7 @@ public class ProjetMenu {
         this.deviMenu = deviMenu;
     }
 
-    public void displayMenu() {
+    public void PrincipleMenu() {
         boolean running = true;
 
         int choice;

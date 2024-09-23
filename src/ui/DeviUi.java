@@ -11,12 +11,12 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class DeviMenu {
+public class DeviUi {
     private Scanner scanner = new Scanner(System.in);
     private DeviService deviService;
     private ProjetService projetService;
 
-    public DeviMenu(DeviService deviService, ProjetService projetService) {
+    public DeviUi(DeviService deviService, ProjetService projetService) {
         this.deviService = deviService;
         this.projetService = projetService;
     }

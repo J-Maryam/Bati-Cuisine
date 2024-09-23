@@ -22,7 +22,7 @@ public class Main {
 
         ClientRepository clientRepository = new ClientRepositoryImpl(connection);
         ClientService clientService = new ClientServiceImpl(clientRepository);
-        ClientMenu clientMenu = new ClientMenu(clientService);
+        ClientUi clientUi = new ClientUi(clientService);
 
         ProjetRepository projetRepository = new ProjetRepositoryImpl(connection, clientService);
 
@@ -34,18 +34,18 @@ public class Main {
 
         ProjetService projetService = new ProjetServiceImpl(projetRepository, materielService, mainDOeuvreService);
 
-        MaterielMenu materielMenu = new MaterielMenu(materielService, projetService);
+        MaterielUi materielUi = new MaterielUi(materielService, projetService);
 
-        MainDOeuvreMenu mainDOeuvreMenu = new MainDOeuvreMenu(mainDOeuvreService, projetService);
+        MainDOeuvreUi mainDOeuvreUi = new MainDOeuvreUi(mainDOeuvreService, projetService);
 
         DeviRepository deviRepository = new DeviRepositoryImpl(connection);
         DeviService deviService = new DeviServiceImpl(deviRepository);
-        DeviMenu deviMenu = new DeviMenu(deviService, projetService);
+        DeviUi deviUi = new DeviUi(deviService, projetService);
 
-        ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, materielService, mainDOeuvreService, deviMenu);
-//        projetMenu.addProject();
+        ProjetUi projetUi = new ProjetUi(projetService, clientService, clientUi, materielUi, mainDOeuvreUi, materielService, mainDOeuvreService, deviUi);
+//        projetUi.addProject();
 
-        projetMenu.displayMenu();
+        projetUi.PrincipleMenu();
     }
 
 }
