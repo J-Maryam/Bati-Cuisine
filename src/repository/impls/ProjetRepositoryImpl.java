@@ -1,10 +1,12 @@
 package repository.impls;
 
+import models.entities.Client;
 import repository.ProjetRepository;
 import models.entities.Projet;
 import models.enums.EtatProjet;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -93,6 +95,26 @@ public class ProjetRepositoryImpl implements ProjetRepository {
 
     @Override
     public List<Projet> getAllProjet() {
-        return List.of();
+        List<Projet> projets = new ArrayList<>();
+        String sql = "SELECT * FROM projets";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Projet projet = new Projet();
+                projet.setId((UUID) rs.getObject("id"));
+                projet.setNom(rs.getString("nom"));
+                projet.setSurface(rs.getFloat("surface"));
+                projet.setMargeBeneficiaire(rs.getFloat("margeBeneficiaire"));
+                projet.setCoutTotal(rs.getFloat("coutTotal"));
+                projet.setEtatProjet(rs.getObject("etatProjet", EtatProjet.class));
+                projet.setClient(rs.getObject("client", Client.class));
+                projets.add(projet);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return projets;
     }
 }
