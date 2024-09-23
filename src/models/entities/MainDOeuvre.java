@@ -43,6 +43,6 @@ public class MainDOeuvre extends Composant{
 
     @Override
     public double calculerCout() {
-        return getTauxHoraire() * getHeuresTravail() * getProductiviteOuvrier();
+        return getTauxHoraire() * getHeuresTravail() * getProductiviteOuvrier() * getTauxTVA() / 100;
     }
 }

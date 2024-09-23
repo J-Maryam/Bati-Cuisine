@@ -53,7 +53,7 @@ public class Materiel extends Composant{
 
     @Override
     public double calculerCout() {
-        return (getCoutUnitaire() * getQuantite() * getCoefficientQualite()) + getCoutTransport() ;
+        return (getCoutUnitaire() * getQuantite() * getCoefficientQualite() * getTauxTVA() / 100) + getCoutTransport() ;
     }
 
 }
