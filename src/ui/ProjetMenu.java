@@ -40,12 +40,10 @@ public class ProjetMenu {
         int choice;
         while (running) {
             System.out.println("==== Project Menu ====");
-            System.out.println("1. Add new Project");
-            System.out.println("2. Update Project");
-            System.out.println("3. Delete Project");
-            System.out.println("4. Search Project");
-            System.out.println("5. Show all Projects");
-            System.out.println("0. Back to the main menu");
+            System.out.println("1. Créer un nouveau projet");
+            System.out.println("2.  Afficher les projets existants");
+            System.out.println("3. Calculer le coût d'un projet");
+            System.out.println("0. Quitter");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -58,12 +56,8 @@ public class ProjetMenu {
                     break;
                 case 3:
                     break;
-                case 4:
-                    break;
-                case 5:
-                    break;
                 case 0:
-                    System.out.println("Exiting client menu...");
+                    System.out.println("Exiting ...");
                     running = false;
                     break;
                 default:
