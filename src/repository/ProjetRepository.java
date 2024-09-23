@@ -9,8 +9,6 @@ import java.util.UUID;
 public interface ProjetRepository {
     UUID addProjet(Projet projet);
     int updateProjet(Projet projet);
-    int deleteProjet(UUID id);
-    Optional<Projet> getProjetById(UUID id);
-    Optional<Projet> getProjetByName(String projectName);
+    Optional<Projet> getProjetById(UUID projetId);
     List<Projet> getAllProjet();
 }

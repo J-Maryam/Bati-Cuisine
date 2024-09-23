@@ -33,6 +33,11 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
+    public Optional<Projet> getProjetById(UUID projetId) {
+        return projetRepository.getProjetById(projetId);
+    }
+
+    @Override
     public double calculateCoutTotalAvantMarge(UUID projetId, Projet projet) {
         List<Materiel> materiels = materielService.getComposantsByProjet(projetId);
         List<MainDOeuvre> mainDOeuvres = mainDOeuvreService.getComposantsByProjet(projetId);

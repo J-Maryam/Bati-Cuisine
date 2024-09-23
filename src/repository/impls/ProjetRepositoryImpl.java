@@ -66,20 +66,29 @@ public class ProjetRepositoryImpl implements ProjetRepository {
         return 0;
     }
 
-
     @Override
-    public int deleteProjet(UUID id) {
-        return 0;
-    }
+    public Optional<Projet> getProjetById(UUID projetId) {
+        String sql = "SELECT * FROM projets WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setObject(1, projetId);
 
-    @Override
-    public Optional<Projet> getProjetById(UUID id) {
-        return Optional.empty();
-    }
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    Projet projet = new Projet();
+                    projet.setId((UUID) resultSet.getObject("id"));
+                    projet.setNom(resultSet.getString("nom"));
+                    projet.setSurface(resultSet.getFloat("surface"));
+                    projet.setCoutTotal(resultSet.getFloat("coutTotal"));
 
-    @Override
-    public Optional<Projet> getProjetByName(String projectName) {
-        return Optional.empty();
+                    return Optional.of(projet);
+                } else {
+                    return Optional.empty();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override
