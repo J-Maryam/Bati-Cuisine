@@ -43,7 +43,6 @@ public class Main {
         DeviUi deviUi = new DeviUi(deviService, projetService);
 
         ProjetUi projetUi = new ProjetUi(projetService, clientService, clientUi, materielUi, mainDOeuvreUi, materielService, mainDOeuvreService, deviUi);
-//        projetUi.addProject();
 
         projetUi.PrincipleMenu();
     }

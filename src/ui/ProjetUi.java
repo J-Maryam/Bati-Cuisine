@@ -195,13 +195,13 @@ public class ProjetUi {
 
         deviMenu.addDevi(projetId);
 
-        System.out.println("--- Fin du projet ---");
+        if (projetId != null) {
+            System.out.println("Projet ajouté avec succès.");
+        } else {
+            System.out.println("Une erreur est survenue lors de l'ajout du projet.");
+        }
 
-//        if (projetId != null) {
-//            System.out.println("Projet ajouté avec succès.");
-//        } else {
-//            System.out.println("Une erreur est survenue lors de l'ajout du projet.");
-//        }
+        System.out.println("--- Fin du projet ---");
     }
 
     public Client addNewClient() {
