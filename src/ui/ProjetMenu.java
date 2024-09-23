@@ -53,6 +53,7 @@ public class ProjetMenu {
                     addProject();
                     break;
                 case 2:
+                    displayAllProjects();
                     break;
                 case 3:
                     break;
@@ -210,5 +211,31 @@ public class ProjetMenu {
         client.setId(clientId);
         return client;
     }
+
+    public void displayAllProjects() {
+        List<Projet> projets = projetService.getAllProjet();
+
+        if (projets.isEmpty()) {
+            System.out.println("Aucun projet n'a été trouvé.");
+            return;
+        }
+
+        System.out.println("--- Liste des Projets ---");
+        for (Projet projet : projets) {
+            System.out.println("ID: " + projet.getId());
+            System.out.println("Nom: " + projet.getNom());
+            System.out.println("Surface: " + projet.getSurface() + " m²");
+            System.out.println("Marge Bénéficiaire: " + projet.getMargeBeneficiaire() + " %");
+            System.out.println("Coût Total: " + projet.getCoutTotal() + " €");
+            System.out.println("État du Projet: " + projet.getEtatProjet());
+            if (projet.getClient() != null) {
+                System.out.println("Client: " + projet.getClient().getNom());
+            } else {
+                System.out.println("Client: Aucun client associé");
+            }
+            System.out.println("--------------------------");
+        }
+    }
+
 
 }

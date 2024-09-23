@@ -24,7 +24,7 @@ public class Main {
         ClientService clientService = new ClientServiceImpl(clientRepository);
         ClientMenu clientMenu = new ClientMenu(clientService);
 
-        ProjetRepository projetRepository = new ProjetRepositoryImpl(connection);
+        ProjetRepository projetRepository = new ProjetRepositoryImpl(connection, clientService);
 
         ComposantRepository materielRepository = new MaterielRepositoryImpl(connection);
         ComposantService materielService = new MaterielServiceImpl(materielRepository);
@@ -43,7 +43,9 @@ public class Main {
         DeviMenu deviMenu = new DeviMenu(deviService, projetService);
 
         ProjetMenu projetMenu = new ProjetMenu(projetService, clientService, clientMenu, materielMenu, mainDOeuvreMenu, materielService, mainDOeuvreService, deviMenu);
-        projetMenu.addProject();
+//        projetMenu.addProject();
+
+        projetMenu.displayMenu();
     }
 
 }
