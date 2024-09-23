@@ -1,9 +1,12 @@
 package repository.impls;
 
 import models.entities.Client;
+import repository.ClientRepository;
 import repository.ProjetRepository;
 import models.entities.Projet;
 import models.enums.EtatProjet;
+import services.ClientService;
+import services.impls.ClientServiceImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,9 +17,11 @@ import java.util.UUID;
 public class ProjetRepositoryImpl implements ProjetRepository {
 
     private final Connection connection;
+    private ClientService clientService;
 
-    public ProjetRepositoryImpl(Connection connection) {
+    public ProjetRepositoryImpl(Connection connection, ClientService clientService) {
         this.connection = connection;
+        this.clientService = clientService;
     }
 
     @Override
@@ -106,8 +111,20 @@ public class ProjetRepositoryImpl implements ProjetRepository {
                 projet.setSurface(rs.getFloat("surface"));
                 projet.setMargeBeneficiaire(rs.getFloat("margeBeneficiaire"));
                 projet.setCoutTotal(rs.getFloat("coutTotal"));
-                projet.setEtatProjet(rs.getObject("etatProjet", EtatProjet.class));
-                projet.setClient(rs.getObject("client", Client.class));
+                projet.setEtatProjet(EtatProjet.valueOf(rs.getString("etatProjet")));
+
+                UUID clientId = (UUID) rs.getObject("clientId");
+                if (clientId != null) {
+                    Optional<Client> clientOptional = clientService.getClientById(clientId.toString());
+                    if (clientOptional.isPresent()) {
+                        projet.setClient(clientOptional.get());
+                    } else {
+                        projet.setClient(null);
+                    }
+                } else {
+                    projet.setClient(null);
+                }
+
                 projets.add(projet);
             }
 
