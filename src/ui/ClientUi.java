@@ -150,7 +150,7 @@ public class ClientUi {
             System.out.println("No client found.");
         }else {
             for (Client client : clients) {
-                System.out.println("ID: " + client.getId());
+//                System.out.println("ID: " + client.getId());
                 System.out.println("Nom: " + client.getNom());
                 System.out.println("Adresse: " + client.getAdresse());
                 System.out.println("Téléphone: " + client.getTelephone());

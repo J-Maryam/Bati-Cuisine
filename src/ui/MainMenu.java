@@ -26,6 +26,8 @@ public class MainMenu {
             System.out.println("1. Créer un nouveau projet");
             System.out.println("2. Afficher les projets existants");
             System.out.println("3. Calculer le coût d'un projet");
+            System.out.println("4. Ajouter un nouveau client");
+            System.out.println("5. afficher les clients existants");
             System.out.println("0. Quitter");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
@@ -40,6 +42,12 @@ public class MainMenu {
                     break;
                 case 3:
                     projetUi.calculerCoutProjet();
+                    break;
+                case 4:
+                    clientUi.addClient();
+                    break;
+                case 5:
+                    clientUi.getAllClient();
                     break;
                 case 0:
                     System.out.println("Exiting ...");

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcd3f501-36e5-4973-902d-0a6656001ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ui/MainDOeuvreUi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainDOeuvreUi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MaterielUi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MaterielUi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ClientUi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ClientUi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "BC-30-Validation",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/marya/IdeaProjects/EcoMove",
     "node.js.detected.package.eslint": "true",
