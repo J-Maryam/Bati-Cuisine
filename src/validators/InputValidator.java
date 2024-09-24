@@ -23,4 +23,8 @@ public class InputValidator {
         }
     }
 
+    public static boolean validatePositiveAmount(float amount) {
+        return amount > 0;
+    }
+
 }
