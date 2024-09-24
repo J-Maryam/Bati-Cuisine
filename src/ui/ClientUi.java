@@ -18,7 +18,7 @@ public class ClientUi {
         this.clientService = clientService;
     }
 
-    public UUID addClient() a{
+    public UUID addClient() {
 
         System.out.println("== Ajouter un nouveau client ==");
 
