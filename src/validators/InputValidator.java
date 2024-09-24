@@ -27,4 +27,7 @@ public class InputValidator {
         return amount > 0;
     }
 
+    public static boolean validateDates(LocalDate dateEmission, LocalDate dateValidite) {
+        return dateValidite != null && dateValidite.isAfter(dateEmission);
+    }
 }
