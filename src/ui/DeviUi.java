@@ -2,6 +2,7 @@ package ui;
 
 import models.entities.Devi;
 import models.entities.Projet;
+import models.enums.EtatProjet;
 import services.DeviService;
 import services.ProjetService;
 
@@ -34,20 +35,21 @@ public class DeviUi {
 
         float montantEstime = (float) projetService.calculateCoutTotalFinal(projetId, new Projet());
 
-        Optional<Projet> projet = projetService.getProjetById(projetId);
+        Optional<Projet> projetOpt = projetService.getProjetById(projetId);
 
-        if (projet.isEmpty()) {
+        if (projetOpt.isEmpty()) {
             System.out.println("Projet non trouvé. Impossible de créer le devis.");
             return;
         }
 
+        Projet projet = projetOpt.get();
         Devi devi = new Devi();
         devi.setDateEmission(dateEmission);
         devi.setDateValidite(dateValidite);
         devi.setMontantEstime(montantEstime);
-        devi.setProjet(projet.get());
+        devi.setProjet(projet);
 
-        while (true){
+        while (true) {
             System.out.print("Souhaitez-vous enregistrer le devis ? (y/n) : ");
             String reponse = scanner.nextLine();
 
@@ -56,6 +58,9 @@ public class DeviUi {
                 UUID deviId = deviService.addDevi(devi);
                 if (deviId != null) {
                     System.out.println("Devis enregistré avec succès !");
+                    projet.setEtatProjet(EtatProjet.TERMINE);
+                    projetService.updateProjet(projet);
+                    System.out.println("L'état du projet a été mis à jour à : terminé.");
                 } else {
                     System.out.println("Erreur lors de l'enregistrement du devis.");
                 }
@@ -63,8 +68,12 @@ public class DeviUi {
             } else if (reponse.equalsIgnoreCase("n")) {
                 devi.setAccepte(false);
                 deviService.addDevi(devi);
+                System.out.println("Le devis a été enregistré mais n'a pas été accepté.");
+                projet.setEtatProjet(EtatProjet.ANNULE);
+                projetService.updateProjet(projet);
+                System.out.println("L'état du projet a été mis à jour à : annulé.");
                 break;
-            }else{
+            } else {
                 System.out.println("Réponse invalide. Veuillez répondre par 'y' ou 'n'.");
             }
         }

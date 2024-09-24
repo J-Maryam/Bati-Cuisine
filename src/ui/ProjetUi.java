@@ -238,13 +238,6 @@ public class ProjetUi {
         System.out.println("--- Fin du projet ---");
     }
 
-    public Client addNewClient() {
-        UUID clientId = clientMenu.addClient();
-        Client client = new Client();
-        client.setId(clientId);
-        return client;
-    }
-
     public void displayAllProjects() {
         List<Projet> projets = projetService.getAllProjet();
 
