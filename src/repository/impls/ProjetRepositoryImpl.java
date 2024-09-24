@@ -147,6 +147,7 @@ public class ProjetRepositoryImpl implements ProjetRepository {
                 projet.setCoutTotal(rs.getFloat("coutTotal"));
                 projet.setEtatProjet(EtatProjet.valueOf(rs.getString("etatProjet")));
 
+
                 UUID clientId = (UUID) rs.getObject("clientId");
                 if (clientId != null) {
                     Optional<Client> clientOptional = clientService.getClientById(clientId.toString());
