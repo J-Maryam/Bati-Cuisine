@@ -28,7 +28,7 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
-    public int updateProjet(Projet projet) {
+    public UUID updateProjet(Projet projet) {
         return projetRepository.updateProjet(projet);
     }
 

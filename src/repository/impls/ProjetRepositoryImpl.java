@@ -55,7 +55,11 @@ public class ProjetRepositoryImpl implements ProjetRepository {
     }
 
     @Override
-    public int updateProjet(Projet projet) {
+    public UUID updateProjet(Projet projet) {
+        if (projet.getId() == null) {
+            throw new IllegalArgumentException("Le projet doit avoir un ID valide pour la mise à jour.");
+        }
+
         String sql = "UPDATE projets SET nom = ?, surface = ?, margeBeneficiaire = ?, coutTotal = ?, etatProjet = ?, clientId = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, projet.getNom());
@@ -63,14 +67,23 @@ public class ProjetRepositoryImpl implements ProjetRepository {
             ps.setDouble(3, projet.getMargeBeneficiaire());
             ps.setDouble(4, projet.getCoutTotal());
             ps.setObject(5, projet.getEtatProjet().name(), java.sql.Types.OTHER);
-            ps.setObject(6, projet.getClient().getId());
+
+            if (projet.getClient() != null) {
+                ps.setObject(6, projet.getClient().getId());
+            } else {
+                ps.setNull(6, java.sql.Types.OTHER);
+            }
+
             ps.setObject(7, projet.getId());
 
-            return ps.executeUpdate();
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                return projet.getId();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return projet.getId();
     }
 
     @Override

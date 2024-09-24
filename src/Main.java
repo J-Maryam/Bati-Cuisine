@@ -44,7 +44,8 @@ public class Main {
 
         ProjetUi projetUi = new ProjetUi(projetService, clientService, clientUi, materielUi, mainDOeuvreUi, materielService, mainDOeuvreService, deviUi);
 
-        projetUi.PrincipleMenu();
+        MainMenu menu = new MainMenu(clientUi, projetUi);
+        menu.PrincipleMenu();
     }
 
 }

@@ -1,8 +1,6 @@
 package ui;
 
 import models.entities.Client;
-import models.entities.MainDOeuvre;
-import models.entities.Materiel;
 import models.entities.Projet;
 import services.ClientService;
 import services.ComposantService;
@@ -18,58 +16,24 @@ public class ProjetUi {
     private Scanner scanner = new Scanner(System.in);
     private ProjetService projetService;
     private ClientService clientService;
-    private ClientUi clientMenu;
-    private MaterielUi materielMenu;
-    private MainDOeuvreUi mainDOeuvreMenu;
+    private ClientUi clientUi;
+    private MaterielUi materielUi;
+    private MainDOeuvreUi mainDOeuvreUi;
     private ComposantService materielService;
     private ComposantService mainDOeuvreService;
-    private DeviUi deviMenu;
+    private DeviUi deviUi;
 
     float remise = 0;
 
     public ProjetUi(ProjetService projetService, ClientService clientService, ClientUi clientMenu, MaterielUi materielMenu, MainDOeuvreUi mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviUi deviMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
-        this.clientMenu = clientMenu;
-        this.materielMenu = materielMenu;
-        this.mainDOeuvreMenu = mainDOeuvreMenu;
+        this.clientUi = clientMenu;
+        this.materielUi = materielMenu;
+        this.mainDOeuvreUi = mainDOeuvreMenu;
         this.materielService = materielService;
         this.mainDOeuvreService = mainDOeuvreService;
-        this.deviMenu = deviMenu;
-    }
-
-    public void PrincipleMenu() {
-        boolean running = true;
-
-        int choice;
-        while (running) {
-            System.out.println("==== Menu Principale ====");
-            System.out.println("1. Créer un nouveau projet");
-            System.out.println("2. Afficher les projets existants");
-            System.out.println("3. Calculer le coût d'un projet");
-            System.out.println("0. Quitter");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    addProject();
-                    break;
-                case 2:
-                    displayAllProjects();
-                    break;
-                case 3:
-                    calculerCoutProjet();
-                    break;
-                case 0:
-                    System.out.println("Exiting ...");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
+        this.deviUi = deviMenu;
     }
 
     public void addProject() {
@@ -89,7 +53,7 @@ public class ProjetUi {
 
             if (option.equals("1")) {
                 System.out.println("--- Recherche de client existant ---");
-                Optional<Client> clientOpt = clientMenu.searchClientByName();
+                Optional<Client> clientOpt = clientUi.searchClientByName();
 
                 if (clientOpt.isPresent()) {
                     client = clientOpt.get();
@@ -97,7 +61,7 @@ public class ProjetUi {
 
                 } else {
                     System.out.println("Veuillez en ajouter un nouveau.");
-                    UUID clientId = clientMenu.addClient();
+                    UUID clientId = clientUi.addClient();
                     Optional<Client> newClientOpt = clientService.getClientById(clientId.toString());
 
                     if (newClientOpt.isPresent()) {
@@ -108,7 +72,7 @@ public class ProjetUi {
                     }
                 }
             } else if (option.equals("2")) {
-                UUID clientId = clientMenu.addClient();
+                UUID clientId = clientUi.addClient();
                 Optional<Client> clientOpt = clientService.getClientById(clientId.toString());
 
                 if (clientOpt.isPresent()) {
@@ -142,14 +106,14 @@ public class ProjetUi {
         UUID projetId = projetService.addProjet(projet);
 
         // Ajout de matériel
-        materielMenu.addMateriel(projetId, projet);
+        materielUi.addMateriel(projetId, projet);
         String ajouterAutreMateriel;
         do {
             System.out.print("Voulez-vous ajouter un autre matériel ? (y/n) : ");
             ajouterAutreMateriel = scanner.nextLine();
 
             if (ajouterAutreMateriel.equalsIgnoreCase("y")) {
-                materielMenu.addMateriel(projetId, projet);
+                materielUi.addMateriel(projetId, projet);
             } else if (!ajouterAutreMateriel.equalsIgnoreCase("n")) {
                 break;
             } else {
@@ -158,14 +122,14 @@ public class ProjetUi {
         } while (!ajouterAutreMateriel.equalsIgnoreCase("n"));
 
         // Ajout de main d'œuvre
-        mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
+        mainDOeuvreUi.addMainDOeuvre(projetId, projet);
         String ajouterAutreMainDoeuvre;
         do {
             System.out.print("Voulez-vous ajouter une autre main d'œuvre ? (y/n) : ");
             ajouterAutreMainDoeuvre = scanner.nextLine();
 
             if (ajouterAutreMainDoeuvre.equalsIgnoreCase("y")) {
-                mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
+                mainDOeuvreUi.addMainDOeuvre(projetId, projet);
             } else if (ajouterAutreMainDoeuvre.equalsIgnoreCase("n")) {
                 break;
             } else {
@@ -218,12 +182,12 @@ public class ProjetUi {
         System.out.println("\n--- Détail des Coûts ---\n");
         materielService.getComposantsByProjet(projet.getId());
 
-        materielMenu.afficherCoutMateriel(projet.getId(), projet);
+        materielUi.afficherCoutMateriel(projet.getId(), projet);
 
         System.out.println();
         mainDOeuvreService.getComposantsByProjet(projet.getId());
 
-        mainDOeuvreMenu.afficherCoutMainDOeuvre(projet.getId(), projet);
+        mainDOeuvreUi.afficherCoutMainDOeuvre(projet.getId(), projet);
         System.out.println();
 
         float coutTotalAvantMarge = (float) projetService.calculateCoutTotalAvantMarge(projet.getId(), projet);
@@ -247,7 +211,7 @@ public class ProjetUi {
             System.out.println("Une erreur est survenue lors de l'ajout du projet.");
         }
 
-        deviMenu.addDevi(projetId);
+        deviUi.addDevi(projetId);
 
         System.out.println("--- Fin du projet ---");
     }
@@ -307,12 +271,12 @@ public class ProjetUi {
         System.out.println("\n--- Détail des Coûts ---\n");
         materielService.getComposantsByProjet(projet.getId());
 
-        materielMenu.afficherCoutMateriel(projet.getId(), projet);
+        materielUi.afficherCoutMateriel(projet.getId(), projet);
 
         System.out.println();
         mainDOeuvreService.getComposantsByProjet(projet.getId());
 
-        mainDOeuvreMenu.afficherCoutMainDOeuvre(projet.getId(), projet);
+        mainDOeuvreUi.afficherCoutMainDOeuvre(projet.getId(), projet);
         System.out.println();
 
         float coutTotalAvantMarge = (float) projetService.calculateCoutTotalAvantMarge(projet.getId(), projet);
