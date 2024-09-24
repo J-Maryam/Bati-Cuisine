@@ -1,6 +1,8 @@
 package ui;
 
 import models.entities.Client;
+import models.entities.MainDOeuvre;
+import models.entities.Materiel;
 import models.entities.Projet;
 import services.ClientService;
 import services.ComposantService;
@@ -55,6 +57,7 @@ public class ProjetUi {
                     displayAllProjects();
                     break;
                 case 3:
+                    calculerCoutProjet();
                     break;
                 case 0:
                     System.out.println("Exiting ...");
@@ -236,5 +239,55 @@ public class ProjetUi {
         }
     }
 
+    public void calculerCoutProjet() {
+        System.out.println("Veuillez entrer le nom du projet dont vous voulez calculer le coût : ");
+        String projectName = scanner.nextLine();
 
+        Optional<Projet> projetOptional = projetService.getProjetByName(projectName);
+        if (projetOptional.isEmpty()) {
+            System.out.println("Projet non trouvé.");
+            return;
+        }
+
+        Projet projet = projetOptional.get();
+
+        System.out.println("Calcul du coût en cours...\n");
+
+        System.out.println("--- Résultat du Calcul ---\n");
+
+        System.out.printf("Nom du projet : %s", projet.getNom());
+
+        if (projet.getClient() != null) {
+            System.out.printf("Client : %s%n\n", projetOptional.get().getClient().getNom());
+            System.out.printf("Adresse du chantier : %s%n\n", projetOptional.get().getClient().getAdresse());
+        } else {
+            System.out.println("Client : Aucun client associé");
+        }
+
+        System.out.printf("Surface du projet : %.2f m²\n", projet.getSurface());
+
+        System.out.println("\n--- Détail des Coûts ---\n");
+        materielService.getComposantsByProjet(projet.getId());
+
+        materielMenu.afficherCoutMateriel(projet.getId(), projet);
+
+        System.out.println();
+        mainDOeuvreService.getComposantsByProjet(projet.getId());
+
+        mainDOeuvreMenu.afficherCoutMainDOeuvre(projet.getId(), projet);
+        System.out.println();
+
+        float coutTotalAvantMarge = (float) projetService.calculateCoutTotalAvantMarge(projet.getId(), projet);
+        System.out.printf("Coût total avant la marge beneficiaire : %.2f €%n", coutTotalAvantMarge);
+        System.out.println();
+
+        double margeBeneficiaire = projetService.calculateMargeBeneficiaire(projet.getId(), projet);
+        System.out.printf("Marge beneficiaire : %.2f €%n", margeBeneficiaire);
+        System.out.println();
+
+        float coutTotalFinal = (float) projetService.calculateCoutTotalFinal(projet.getId(), projet);
+        System.out.printf("* Coût total final du projet : %.2f € *%n", coutTotalFinal);
+        System.out.println();
+
+    }
 }

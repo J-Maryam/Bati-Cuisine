@@ -38,6 +38,11 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
+    public Optional<Projet> getProjetByName(String projectName) {
+        return projetRepository.getProjetByName(projectName);
+    }
+
+    @Override
     public List<Projet> getAllProjet() {
         return projetRepository.getAllProjet();
     }
@@ -58,7 +63,8 @@ public class ProjetServiceImpl implements ProjetService {
     public double calculateMargeBeneficiaire(UUID projetId, Projet projet) {
         double coutTotalAvantMarge = calculateCoutTotalAvantMarge(projetId, projet);
         double marge = projet.getMargeBeneficiaire();
-        return coutTotalAvantMarge * (marge / 100);
+        double margeBeneficiaire = coutTotalAvantMarge * (marge / 100);
+        return margeBeneficiaire;
     }
 
     @Override

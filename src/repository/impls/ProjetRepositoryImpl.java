@@ -99,6 +99,40 @@ public class ProjetRepositoryImpl implements ProjetRepository {
     }
 
     @Override
+    public Optional<Projet> getProjetByName(String projectName) {
+        String sql = "SELECT * FROM projets WHERE nom = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, projectName);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Projet projet = new Projet();
+                projet.setId((UUID) rs.getObject("id"));
+                projet.setNom(projectName);
+                projet.setSurface(rs.getFloat("surface"));
+                projet.setCoutTotal(rs.getFloat("coutTotal"));
+                projet.setMargeBeneficiaire(rs.getFloat("margeBeneficiaire"));
+                projet.setEtatProjet(EtatProjet.valueOf(rs.getString("etatProjet")));
+
+                UUID clientId = (UUID) rs.getObject("clientId");
+                if (clientId != null) {
+                    Optional<Client> clientOptional = clientService.getClientById(clientId.toString());
+                    if (clientOptional.isPresent()) {
+                        projet.setClient(clientOptional.get());
+                    } else {
+                        projet.setClient(null);
+                    }
+                } else {
+                    projet.setClient(null);
+                }                return Optional.of(projet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
     public List<Projet> getAllProjet() {
         List<Projet> projets = new ArrayList<>();
         String sql = "SELECT * FROM projets";

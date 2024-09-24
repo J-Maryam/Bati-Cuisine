@@ -10,5 +10,6 @@ public interface ProjetRepository {
     UUID addProjet(Projet projet);
     int updateProjet(Projet projet);
     Optional<Projet> getProjetById(UUID projetId);
+    Optional<Projet> getProjetByName(String projectName);
     List<Projet> getAllProjet();
 }
