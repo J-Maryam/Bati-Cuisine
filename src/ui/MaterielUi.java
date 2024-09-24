@@ -4,6 +4,7 @@ import models.entities.Materiel;
 import models.entities.Projet;
 import services.ComposantService;
 import services.ProjetService;
+import validators.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -24,30 +25,65 @@ public class MaterielUi {
     public void addMateriel(UUID projetId, Projet projet) {
         System.out.println("=== Ajout d'un nouveau matériau ===");
 
-        System.out.print("Entrez le nom du matériau : ");
-        String nom = scanner.nextLine();
+        String nom;
+        while (true) {
+            System.out.print("Entrez le nom du matériau : ");
+            nom = scanner.nextLine();
+            if (InputValidator.validateNonEmptyString(nom)) {
+                break;
+            }
+            System.out.println("Le nom ne peut pas être vide. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le taux de TVA (%) : ");
-        float tauxTVA = scanner.nextFloat();
-        scanner.nextLine();
+        float tauxTVA;
+        while (true) {
+            System.out.print("Entrez le taux de TVA (%) : ");
+            tauxTVA = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(tauxTVA)) {
+                break;
+            }
+            System.out.println("Le taux de TVA doit être positif. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le coût unitaire (€) : ");
-        float coutUnitaire = scanner.nextFloat();
-        scanner.nextLine();
+        float coutUnitaire;
+        while (true) {
+            System.out.print("Entrez le coût unitaire (€) : ");
+            coutUnitaire = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(coutUnitaire)) {
+                break;
+            }
+            System.out.println("Le coût unitaire doit être positif. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez la quantité : ");
-        float quantite = scanner.nextFloat();
-        scanner.nextLine();
+        float quantite;
+        while (true) {
+            System.out.print("Entrez la quantité : ");
+            quantite = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(quantite)) {
+                break;
+            }
+            System.out.println("La quantité doit être positive. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le coût de transport (€) : ");
-        float coutTransport = scanner.nextFloat();
-        scanner.nextLine();
+        float coutTransport;
+        while (true) {
+            System.out.print("Entrez le coût de transport (€) : ");
+            coutTransport = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(coutTransport)) {
+                break;
+            }
+            System.out.println("Le coût de transport doit être positif. Veuillez réessayer.");
+        }
 
         while (!isValid) {
             System.out.print("Entrez le coefficient de qualité (1.0 = standard, > 1.0 = haute qualité) : ");
             try {
                 coefficientQualite = Float.parseFloat(scanner.nextLine());
-                if (coefficientQualite == 1.0f || coefficientQualite == 1.1f || coefficientQualite == 2.0f) {
+                if (InputValidator.validateProductivityFactor(coefficientQualite)) {
                     isValid = true;
                 } else {
                     System.out.println("Valeur incorrecte. Veuillez entrer 1.0, 1.1 ou 2.0.");
