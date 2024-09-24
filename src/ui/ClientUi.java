@@ -2,7 +2,9 @@ package ui;
 
 import models.entities.Client;
 import services.ClientService;
+import validators.InputValidator;
 
+import javax.xml.validation.Validator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -16,22 +18,51 @@ public class ClientUi {
         this.clientService = clientService;
     }
 
-    public UUID addClient() {
+    public UUID addClient() a{
 
         System.out.println("== Ajouter un nouveau client ==");
 
-        System.out.print("Nom du client: ");
-        String nom = scanner.nextLine();
+        String nom;
+        do {
+            System.out.print("Nom du client: ");
+            nom = scanner.nextLine();
+            if (!InputValidator.validateNonEmptyString(nom)){
+                System.out.println("Le nom du client ne peut pas être vide.");
+            }
+        }while (!InputValidator.validateNonEmptyString(nom));
 
-        System.out.print("Adresse: ");
-        String adresse = scanner.nextLine();
+        String adresse;
+        do {
+            System.out.print("Adresse: ");
+            adresse = scanner.nextLine();
+            if (!InputValidator.validateNonEmptyString(adresse)){
+                System.out.println("L'adresse ne peut pas être vide.");            }
+        }while (!InputValidator.validateNonEmptyString(adresse));
 
-        System.out.print("Téléphone: ");
-        String telephone = scanner.nextLine();
 
-        System.out.print("Est-ce le client est professionnel? (oui/non): ");
-        String reponse = scanner.nextLine();
-        boolean estProfessionnel = reponse.equalsIgnoreCase("oui");
+        String telephone;
+        do {
+            System.out.print("Téléphone (+212 XXX XXX XXX): ");
+            telephone = scanner.nextLine();
+            if (!InputValidator.validatePhoneNumber(telephone)) {
+                System.out.println("Le numéro de téléphone est invalide. Utilisez le format +212 XXX XXX XXX.");
+            }
+        } while (!InputValidator.validatePhoneNumber(telephone));
+
+        boolean estProfessionnel = false;
+        do {
+            System.out.print("Est-ce le client est professionnel? (oui/non): ");
+            String reponse = scanner.nextLine();
+            if (reponse.equalsIgnoreCase("oui")) {
+                estProfessionnel = true;
+                break;
+            } else if (reponse.equalsIgnoreCase("non")) {
+                estProfessionnel = false;
+                break;
+            } else {
+                System.out.println("Réponse non valide. Veuillez répondre par 'oui' ou 'non'.");
+            }
+        } while (true);
 
         Client client = new Client();
         client.setNom(nom);
