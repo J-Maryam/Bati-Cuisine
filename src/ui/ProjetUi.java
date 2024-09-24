@@ -7,6 +7,7 @@ import models.entities.Projet;
 import services.ClientService;
 import services.ComposantService;
 import services.ProjetService;
+import validators.InputValidator;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +79,7 @@ public class ProjetUi {
         String option;
         Float marge = null;
 
+        // Recherche ou ajout de client
         do {
             System.out.println("Souhaitez-vous chercher un client existant ou en ajouter un nouveau ?");
             System.out.println("1. Chercher un client existant");
@@ -119,12 +121,18 @@ public class ProjetUi {
             }
         } while (!option.equals("1") && !option.equals("2"));
 
-        System.out.print("\nNom du projet : ");
-        String nom = scanner.nextLine();
+        String nom;
+        do {
+            System.out.print("Nom du projet : ");
+            nom = scanner.nextLine();
+        } while (!InputValidator.validateNonEmptyString(nom));
 
-        System.out.print("Surface du projet : ");
-        Float surface = scanner.nextFloat();
-        scanner.nextLine();
+        Float surface;
+        do {
+            System.out.print("Surface du projet : ");
+            surface = scanner.nextFloat();
+            scanner.nextLine();
+        } while (!InputValidator.validatePositiveAmount(surface));
 
         Projet projet = new Projet();
         projet.setNom(nom);
@@ -133,6 +141,7 @@ public class ProjetUi {
 
         UUID projetId = projetService.addProjet(projet);
 
+        // Ajout de matériel
         materielMenu.addMateriel(projetId, projet);
         String ajouterAutreMateriel;
         do {
@@ -148,7 +157,7 @@ public class ProjetUi {
             }
         } while (!ajouterAutreMateriel.equalsIgnoreCase("n"));
 
-
+        // Ajout de main d'œuvre
         mainDOeuvreMenu.addMainDOeuvre(projetId, projet);
         String ajouterAutreMainDoeuvre;
         do {
@@ -164,14 +173,17 @@ public class ProjetUi {
             }
         } while (true);
 
+        // Calcul du coût total
         System.out.println("--- Calcul du coût total ---");
 
         System.out.print("Souhaitez-vous ajouter une marge bénéficiaire à ce projet ? (y/n) : ");
         String reponse = scanner.nextLine();
         if (reponse.equals("y")) {
-            System.out.print("Entrer la marge bénéficiaire de ce projet : ");
-            marge = scanner.nextFloat();
-            scanner.nextLine();
+            do {
+                System.out.print("Entrer la marge bénéficiaire de ce projet : ");
+                marge = scanner.nextFloat();
+                scanner.nextLine();
+            } while (!InputValidator.validatePositiveAmount(marge));
 
             if (client.isProfessional()) {
                 System.out.print("Le client est professionnel. Entrez le pourcentage de remise à appliquer sur la marge (ex : 10 pour 10%) : ");
@@ -188,6 +200,7 @@ public class ProjetUi {
 
         System.out.println("Calcul du coût en cours...\n");
 
+        // Affichage des résultats
         System.out.println("--- Résultat du Calcul ---\n");
 
         System.out.printf("Nom du projet : %s\n", projet.getNom());
@@ -201,6 +214,7 @@ public class ProjetUi {
 
         System.out.printf("Surface du projet : %.2f m²\n", projet.getSurface());
 
+        // Coûts
         System.out.println("\n--- Détail des Coûts ---\n");
         materielService.getComposantsByProjet(projet.getId());
 
