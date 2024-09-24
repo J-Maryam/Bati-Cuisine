@@ -5,6 +5,7 @@ import models.entities.Projet;
 import models.enums.EtatProjet;
 import services.DeviService;
 import services.ProjetService;
+import validators.InputValidator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,13 +26,25 @@ public class DeviUi {
     public void addDevi(UUID projetId) {
         System.out.println("--- Enregistrement du Devis ---");
 
-        System.out.print("Entrez la date d'émission du devis (format : jj/mm/aaaa) : ");
-        String dateEmissionStr = scanner.nextLine();
-        LocalDate dateEmission = LocalDate.parse(dateEmissionStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate dateEmission = null;
+        LocalDate dateValidite = null;
 
-        System.out.print("Entrez la date de validité du devis (format : jj/mm/aaaa) : ");
-        String dateValiditeStr = scanner.nextLine();
-        LocalDate dateValidite = LocalDate.parse(dateValiditeStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        while (dateEmission == null) {
+            System.out.print("Entrez la date d'émission du devis (format : jj/mm/aaaa) : ");
+            String dateEmissionStr = scanner.nextLine();
+            dateEmission = InputValidator.validateDate(dateEmissionStr);
+        }
+
+        while (dateValidite == null) {
+            System.out.print("Entrez la date de validité du devis (format : jj/mm/aaaa) : ");
+            String dateValiditeStr = scanner.nextLine();
+            dateValidite = InputValidator.validateDate(dateValiditeStr);
+
+            if (dateValidite != null && !InputValidator.validateDates(dateEmission, dateValidite)) {
+                System.out.println("La date de validité ne peut pas être antérieure à la date d'émission.");
+                dateValidite = null;
+            }
+        }
 
         float montantEstime = (float) projetService.calculateCoutTotalFinal(projetId, new Projet());
 
