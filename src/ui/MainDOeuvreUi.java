@@ -4,6 +4,7 @@ import models.entities.MainDOeuvre;
 import models.entities.Projet;
 import services.ComposantService;
 import services.ProjetService;
+import validators.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -24,26 +25,54 @@ public class MainDOeuvreUi {
     public void addMainDOeuvre(UUID projetId, Projet projet) {
         System.out.println("=== Ajout d'un nouveau main d'oeuvre ===");
 
-        System.out.print("Entrez le type de main-d'œuvre (e.g., Ouvrier de base, Spécialiste) : ");
-        String nom = scanner.nextLine();
+        String nom;
+        while (true) {
+            System.out.print("Entrez le type de main-d'œuvre (e.g., Ouvrier de base, Spécialiste) : ");
+            nom = scanner.nextLine();
+            if (InputValidator.validateNonEmptyString(nom)) {
+                break;
+            }
+            System.out.println("Le nom ne peut pas être vide. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le taux de TVA (%) : ");
-        float tauxTVA = scanner.nextFloat();
-        scanner.nextLine();
+        float tauxTVA;
+        while (true) {
+            System.out.print("Entrez le taux de TVA (%) : ");
+            tauxTVA = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(tauxTVA)) {
+                break;
+            }
+            System.out.println("Le taux de TVA doit être positif. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le taux horaire de cette main-d'œuvre (€/h) : ");
-        float tauxHoraire = scanner.nextFloat();
-        scanner.nextLine();
+        float tauxHoraire;
+        while (true) {
+            System.out.print("Entrez le taux horaire de cette main-d'œuvre (€/h) : ");
+            tauxHoraire = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(tauxHoraire)) {
+                break;
+            }
+            System.out.println("Le taux horaire doit être positif. Veuillez réessayer.");
+        }
 
-        System.out.print("Entrez le nombre d'heures travaillées (H): ");
-        float heuresTravail = scanner.nextFloat();
-        scanner.nextLine();
+        float heuresTravail;
+        while (true) {
+            System.out.print("Entrez le nombre d'heures travaillées (H): ");
+            heuresTravail = scanner.nextFloat();
+            scanner.nextLine();
+            if (InputValidator.validatePositiveAmount(heuresTravail)) {
+                break;
+            }
+            System.out.println("Le nombre d'heures travaillées doit être positif. Veuillez réessayer.");
+        }
 
         while (!isValid) {
             System.out.print("Entrez le facteur de productivité (1.0 = standard, > 1.0 = haute productivité) : ");
             try {
                 productiviteOuvrier = Float.parseFloat(scanner.nextLine());
-                if (productiviteOuvrier == 1.0f || productiviteOuvrier == 1.1f || productiviteOuvrier == 2.0f) {
+                if (InputValidator.validateProductivityFactor(productiviteOuvrier)) {
                     isValid = true;
                 } else {
                     System.out.println("Valeur incorrecte. Veuillez entrer 1.0, 1.1 ou 2.0.");
