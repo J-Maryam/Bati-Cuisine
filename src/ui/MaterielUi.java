@@ -127,7 +127,7 @@ public class MaterielUi {
 
         for (Materiel materiel : materielsDuProjet) {
             double cout = materiel.calculerCout();
-            System.out.printf("- %s : %.2f € (quantité : %.0f, coût unitaire : %.2f €, qualité : %.0f, transport : %.2f €, TVA : %.0f %%)%n",
+            System.out.printf("- %s : %.2f € (quantité : %.0f, coût unitaire : %.2f €, qualité : %.1f, transport : %.2f €, TVA : %.0f %%)%n",
                     materiel.getNom(),
                     cout,
                     materiel.getQuantite(),

@@ -116,7 +116,7 @@ public class MainDOeuvreUi {
 
         for (MainDOeuvre mainDOeuvre : mainDOeuvresDuProjet) {
             double cout = mainDOeuvre.calculerCout();
-            System.out.printf("- %s : %.2f € (taux horaire : %.2f €/H, heures de travail : %.0f H, productivité des ouvriers : %.0f, TVA : %.0f %%)%n",
+            System.out.printf("- %s : %.2f € (taux horaire : %.2f €/H, heures de travail : %.0f H, productivité des ouvriers : %.1f, TVA : %.0f %%)%n",
                     mainDOeuvre.getNom(),
                     cout,
                     mainDOeuvre.getTauxHoraire(),
