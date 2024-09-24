@@ -25,6 +25,7 @@ public class ProjetUi {
     private DeviUi deviMenu;
 
     float remise = 0;
+
     public ProjetUi(ProjetService projetService, ClientService clientService, ClientUi clientMenu, MaterielUi materielMenu, MainDOeuvreUi mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviUi deviMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
@@ -86,25 +87,33 @@ public class ProjetUi {
 
             if (option.equals("1")) {
                 System.out.println("--- Recherche de client existant ---");
+                Optional<Client> clientOpt = clientMenu.searchClientByName();
 
-                System.out.print("Entrer le nom du client à rechercher : ");
-                String nomClient = scanner.nextLine();
-                Optional<Client> optionalClient = clientService.getClientByName(nomClient);
+                if (clientOpt.isPresent()) {
+                    client = clientOpt.get();
+                    System.out.println("Client trouvé : " + client.getNom());
 
-                if (optionalClient.isPresent()) {
-                    client = optionalClient.get();
-                    System.out.println("\n=== Client trouvé : ===");
-                    System.out.println("Id : " + client.getId());
-                    System.out.println("Nom : " + client.getNom());
-                    System.out.println("Adresse : " + client.getAdresse());
-                    System.out.println("Téléphone : " + client.getTelephone());
-                    System.out.println("Est professionnel : " + client.isProfessional());
                 } else {
-                    System.out.println("Client " + nomClient + " n'existe pas. Veuillez ajouter un nouveau client.");
-                    client = addNewClient();
+                    System.out.println("Veuillez en ajouter un nouveau.");
+                    UUID clientId = clientMenu.addClient();
+                    Optional<Client> newClientOpt = clientService.getClientById(clientId.toString());
+
+                    if (newClientOpt.isPresent()) {
+                        client = newClientOpt.get();
+                        System.out.println("Nouveau client ajouté et récupéré : " + client.getNom());
+                    } else {
+                        System.out.println("Erreur lors de la récupération du nouveau client.");
+                    }
                 }
             } else if (option.equals("2")) {
-                client = addNewClient();
+                UUID clientId = clientMenu.addClient();
+                Optional<Client> clientOpt = clientService.getClientById(clientId.toString());
+
+                if (clientOpt.isPresent()) {
+                    client = clientOpt.get();
+                } else {
+                    System.out.println("Le client n'a pas pu être récupéré après l'ajout.");
+                }
             } else {
                 System.out.println("Option invalide. Veuillez recommencer.");
             }
@@ -164,7 +173,7 @@ public class ProjetUi {
             marge = scanner.nextFloat();
             scanner.nextLine();
 
-            if (client.isProfessional()){
+            if (client.isProfessional()) {
                 System.out.print("Le client est professionnel. Entrez le pourcentage de remise à appliquer sur la marge (ex : 10 pour 10%) : ");
                 remise = scanner.nextFloat() / 100;
                 scanner.nextLine();
@@ -182,8 +191,14 @@ public class ProjetUi {
         System.out.println("--- Résultat du Calcul ---\n");
 
         System.out.printf("Nom du projet : %s\n", projet.getNom());
-        System.out.printf("Client : %s\n", projet.getClient().getNom());
-        System.out.printf("Adresse du chantier : %s\n", projet.getClient().getAdresse());
+
+        if (projet.getClient() != null) {
+            System.out.printf("Client : %s\n", projet.getClient().getNom());
+            System.out.printf("Adresse du chantier : %s\n", projet.getClient().getAdresse());
+        } else {
+            System.out.println("Client: Aucun client associé");
+        }
+
         System.out.printf("Surface du projet : %.2f m²\n", projet.getSurface());
 
         System.out.println("\n--- Détail des Coûts ---\n");

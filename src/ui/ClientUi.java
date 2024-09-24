@@ -94,7 +94,7 @@ public class ClientUi {
         }else System.out.println("Client non trouvé.");
     }
 
-    public void searchClientByName(){
+    public Optional<Client> searchClientByName(){
 
         System.out.print("Entrez le nom du client à rechercher : ");
         String nom = scanner.nextLine();
@@ -108,6 +108,7 @@ public class ClientUi {
             System.out.println("Telephone : " + existingClientOpt.get().getTelephone());
             System.out.println("is Professionnel : " + existingClientOpt.get().isProfessional());
         }else System.out.println("Aucun client trouvé avec le nom " + nom);
+        return existingClientOpt;
     }
 
     public void getAllClient(){
