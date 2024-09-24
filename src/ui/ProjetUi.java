@@ -24,6 +24,7 @@ public class ProjetUi {
     private ComposantService mainDOeuvreService;
     private DeviUi deviMenu;
 
+    float remise = 0;
     public ProjetUi(ProjetService projetService, ClientService clientService, ClientUi clientMenu, MaterielUi materielMenu, MainDOeuvreUi mainDOeuvreMenu, ComposantService materielService, ComposantService mainDOeuvreService, DeviUi deviMenu) {
         this.projetService = projetService;
         this.clientService = clientService;
@@ -162,6 +163,16 @@ public class ProjetUi {
             System.out.print("Entrer la marge bénéficiaire de ce projet : ");
             marge = scanner.nextFloat();
             scanner.nextLine();
+
+            if (client.isProfessional()){
+                System.out.print("Le client est professionnel. Entrez le pourcentage de remise à appliquer sur la marge (ex : 10 pour 10%) : ");
+                remise = scanner.nextFloat() / 100;
+                scanner.nextLine();
+                marge = marge * (1 - remise);
+                System.out.printf("Une remise de %.0f%% a été appliquée sur la marge bénéficiaire.%n", remise * 100);
+
+            }
+
             projet.setMargeBeneficiaire(marge);
             projetService.updateProjet(projet);
         }
@@ -224,7 +235,7 @@ public class ProjetUi {
 
         System.out.println("--- Liste des Projets ---");
         for (Projet projet : projets) {
-            System.out.println("ID: " + projet.getId());
+//            System.out.println("ID: " + projet.getId());
             System.out.println("Nom: " + projet.getNom());
             System.out.println("Surface: " + projet.getSurface() + " m²");
             System.out.println("Marge Bénéficiaire: " + projet.getMargeBeneficiaire() + " %");
