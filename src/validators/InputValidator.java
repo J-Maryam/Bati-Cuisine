@@ -30,4 +30,8 @@ public class InputValidator {
     public static boolean validateDates(LocalDate dateEmission, LocalDate dateValidite) {
         return dateValidite != null && dateValidite.isAfter(dateEmission);
     }
+
+    public static boolean validateProductivityFactor(float factor) {
+        return factor == 1.0f || factor == 1.1f || factor == 2.0f;
+    }
 }
