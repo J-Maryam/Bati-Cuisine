@@ -181,39 +181,44 @@ public class ProjetUi {
 
         System.out.println("--- Résultat du Calcul ---\n");
 
-        System.out.printf("Nom du projet : %s", projet.getNom());
-        System.out.printf("\nClient : %s", projet.getClient().getNom());
-        System.out.printf("\nAdresse du chantier : %s", projet.getClient().getAdresse());
-        System.out.printf("\nSurface du projet : %.2f m²", projet.getSurface());
+        System.out.printf("Nom du projet : %s\n", projet.getNom());
+        System.out.printf("Client : %s\n", projet.getClient().getNom());
+        System.out.printf("Adresse du chantier : %s\n", projet.getClient().getAdresse());
+        System.out.printf("Surface du projet : %.2f m²\n", projet.getSurface());
 
-        System.out.println("\n--- Détail des Coûts ---");
+        System.out.println("\n--- Détail des Coûts ---\n");
         materielService.getComposantsByProjet(projet.getId());
 
-        materielMenu.afficherCoutMateriel(projetId, projet);
+        materielMenu.afficherCoutMateriel(projet.getId(), projet);
 
+        System.out.println();
         mainDOeuvreService.getComposantsByProjet(projet.getId());
 
-        mainDOeuvreMenu.afficherCoutMainDOeuvre(projetId, projet);
+        mainDOeuvreMenu.afficherCoutMainDOeuvre(projet.getId(), projet);
+        System.out.println();
 
-        double coutTotalAvantMarge = projetService.calculateCoutTotalAvantMarge(projetId, projet);
+        float coutTotalAvantMarge = (float) projetService.calculateCoutTotalAvantMarge(projet.getId(), projet);
         System.out.printf("Coût total avant la marge beneficiaire : %.2f €%n", coutTotalAvantMarge);
+        System.out.println();
 
-        double margeBeneficiaire = projetService.calculateMargeBeneficiaire(projetId, projet);
+        double margeBeneficiaire = projetService.calculateMargeBeneficiaire(projet.getId(), projet);
         System.out.printf("Marge beneficiaire : %.2f €%n", margeBeneficiaire);
+        System.out.println();
 
-        float coutTotalFinal = (float) projetService.calculateCoutTotalFinal(projetId, projet);
+        float coutTotalFinal = (float) projetService.calculateCoutTotalFinal(projet.getId(), projet);
         System.out.printf("* Coût total final du projet : %.2f € *%n", coutTotalFinal);
+        System.out.println();
 
         projet.setCoutTotal(coutTotalFinal);
         projetService.updateProjet(projet);
-
-        deviMenu.addDevi(projetId);
 
         if (projetId != null) {
             System.out.println("Projet ajouté avec succès.");
         } else {
             System.out.println("Une erreur est survenue lors de l'ajout du projet.");
         }
+
+        deviMenu.addDevi(projetId);
 
         System.out.println("--- Fin du projet ---");
     }
